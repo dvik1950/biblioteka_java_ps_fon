@@ -23,13 +23,12 @@ public class SOPrijaviAdministratora extends OpstaSistemskaOperacija {
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         List<Administrator> listaAdministratora = Kontroler.vratiInstancu().getListaKorisnika();
-
         administrator = dbb.prijaviAdministratora(parametar);
         if (administrator.getKorisnickoIme() != null) {
             for (Administrator adminIzListe : listaAdministratora) {
                 if (adminIzListe.equals(administrator)) {
                     if (adminIzListe.isUlogovan()) {
-                        throw new ServerskiException("Administrator je vec ulogovan");
+                        throw new ServerskiException("Administrator je već ulogovan");
                     } else {
                         int indeks = listaAdministratora.indexOf(adminIzListe);
                         Kontroler.vratiInstancu().getListaKorisnika().get(indeks).setUlogovan(true);
