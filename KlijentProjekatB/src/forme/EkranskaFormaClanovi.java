@@ -221,7 +221,7 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        nazadNaGlavnu();
+        nazadNaGlavnuFormu();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPretraziClanoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPretraziClanoveActionPerformed

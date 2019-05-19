@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
 import domen.Knjiga;
@@ -17,10 +12,7 @@ import javax.swing.JOptionPane;
 import kontroleriKI.OpstiKontrolerKI;
 import modeli.ModelTabeleKnjige;
 
-/**
- *
- * @author FON
- */
+
 public class EkranskaFormaKnjige extends OpstaEkranskaForma {
 
     /**
@@ -175,7 +167,7 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        nazadNaGlavnu();
+        nazadNaGlavnuFormu();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnKreirajNovuKnjiguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajNovuKnjiguActionPerformed

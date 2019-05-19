@@ -204,7 +204,7 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNazadNaGlavnuFormuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNazadNaGlavnuFormuActionPerformed
-        nazadNaGlavnu();
+        nazadNaGlavnuFormu();
     }//GEN-LAST:event_btnNazadNaGlavnuFormuActionPerformed
 
     private void tabelaKnjigeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaKnjigeMouseClicked

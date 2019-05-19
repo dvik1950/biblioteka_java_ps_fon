@@ -28,7 +28,7 @@ abstract class OpstaEkranskaForma extends javax.swing.JFrame {
      abstract void postaviToolTipove();
      
      
-     public void nazadNaGlavnu(){
+     public void nazadNaGlavnuFormu(){
          dispose();
          glavna.setVisible(true);
      }

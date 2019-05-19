@@ -334,7 +334,7 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNazadNaGlavnuFormuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNazadNaGlavnuFormuActionPerformed
-        nazadNaGlavnu();
+        nazadNaGlavnuFormu();
     }//GEN-LAST:event_btnNazadNaGlavnuFormuActionPerformed
 
     private void btnPronadjiKnjigeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPronadjiKnjigeActionPerformed
