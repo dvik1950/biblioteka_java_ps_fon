@@ -55,9 +55,9 @@ public class Kontroler {
         return listaKorisnika;
     }
 
-    public void setListaKorisnika(List<Administrator> listaKorisnika) {
-        this.listaKorisnika = listaKorisnika;
-    }
+//    public void setListaKorisnika(List<Administrator> listaKorisnika) {
+//        this.listaKorisnika = listaKorisnika;
+//    }
 
     private List<Administrator> vratiListuKorisnika() throws ServerskiException {
         SOUcitajListuKorisnika souk = new SOUcitajListuKorisnika();
@@ -70,14 +70,6 @@ public class Kontroler {
         sopa.setParametar(administrator);
         sopa.izvrsiOperaciju();
         return sopa.getAdministrator();
-    }
-
-
-    public void kreirajAdministratora(Administrator a) throws ServerskiException {
-        so.pomocne.SOKreirajAdministratora ka = new SOKreirajAdministratora();
-        ka.setAdmin(a);
-        ka.izvrsiOperaciju();
-        System.out.println("Kreiran je novi administrator");
     }
 
     public Knjiga kreirajNovuKnjigu() throws ServerskiException {
@@ -203,10 +195,16 @@ public class Kontroler {
 
     public void izloguj(Administrator administrator) throws ServerskiException {
         SOIzlogujSe sois = new SOIzlogujSe();
-        
         sois.setAdministrator(administrator);
-        System.out.println("kontroler s admin koris ime je :" + administrator.getKorisnickoIme());
         sois.izvrsiOperaciju();
+    }
+
+    // pomoćne
+    public void kreirajAdministratora(Administrator a) throws ServerskiException {
+        so.pomocne.SOKreirajAdministratora ka = new SOKreirajAdministratora();
+        ka.setAdmin(a);
+        ka.izvrsiOperaciju();
+        System.out.println("Kreiran je novi administrator");
     }
 
 }

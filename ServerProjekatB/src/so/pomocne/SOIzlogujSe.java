@@ -24,18 +24,11 @@ public class SOIzlogujSe extends OpstaSistemskaOperacija{
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         List<Administrator> lista = Kontroler.vratiInstancu().getListaKorisnika();
-        System.out.println("lista prvi je: " + lista.get(0).getKorisnickoIme());
-        for (Administrator administrator1 : lista) {
-            if(administrator1.getKorisnickoIme().equals(administrator.getKorisnickoIme())){
-                administrator1.setUlogovan(false);
-                System.out.println("izlogovao: " + administrator1.getKorisnickoIme());
+        for (Administrator adminIzListe : lista) {
+            if(adminIzListe.getKorisnickoIme().equals(administrator.getKorisnickoIme())){
+                adminIzListe.setUlogovan(false);
             }
         }
-        
-    }
-
-    public Administrator getAdministrator() {
-        return administrator;
     }
 
     public void setAdministrator(Administrator administrator) {
