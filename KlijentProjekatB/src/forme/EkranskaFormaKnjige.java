@@ -30,7 +30,7 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
         initComponents();
         postaviImeForme();
         postaviToolTipove();
-        btnZapamtiKnjigu.setEnabled(false);
+        zakljucajPamcenjeKnjige();
     }
 
     /**
@@ -349,5 +349,9 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
             return true;
         }
         return false;
+    }
+
+    private void zakljucajPamcenjeKnjige() {
+        btnZapamtiKnjigu.setEnabled(false);
     }
 }
