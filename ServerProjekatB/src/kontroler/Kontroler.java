@@ -48,23 +48,6 @@ public class Kontroler {
         return instanca;
     }
 
-    public List<Administrator> getListaKorisnika() throws ServerskiException {
-        if (listaKorisnika == null) {
-            listaKorisnika = vratiListuKorisnika();
-        }
-        return listaKorisnika;
-    }
-
-//    public void setListaKorisnika(List<Administrator> listaKorisnika) {
-//        this.listaKorisnika = listaKorisnika;
-//    }
-
-    private List<Administrator> vratiListuKorisnika() throws ServerskiException {
-        SOUcitajListuKorisnika souk = new SOUcitajListuKorisnika();
-        souk.izvrsiOperaciju();
-        return souk.getListaKorisnika();
-    }
-
     public Administrator prijaviAdministratora(Administrator administrator) throws ServerskiException {
         SOPrijaviAdministratora sopa = new SOPrijaviAdministratora();
         sopa.setParametar(administrator);
@@ -200,6 +183,19 @@ public class Kontroler {
     }
 
     // pomoćne
+    public List<Administrator> getListaKorisnika() throws ServerskiException {
+        if (listaKorisnika == null) {
+            listaKorisnika = vratiListuKorisnika();
+        }
+        return listaKorisnika;
+    }
+
+    private List<Administrator> vratiListuKorisnika() throws ServerskiException {
+        SOUcitajListuKorisnika souk = new SOUcitajListuKorisnika();
+        souk.izvrsiOperaciju();
+        return souk.getListaKorisnika();
+    }
+
     public void kreirajAdministratora(Administrator a) throws ServerskiException {
         so.pomocne.SOKreirajAdministratora ka = new SOKreirajAdministratora();
         ka.setAdmin(a);
