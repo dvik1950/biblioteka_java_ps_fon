@@ -275,7 +275,9 @@ public class Kontroler {
 
     public void izloguj(Administrator administrator) throws ServerskiException {
         SOIzlogujSe sois = new SOIzlogujSe();
+        
         sois.setAdministrator(administrator);
+        System.out.println("kontroler s admin koris ime je :" + administrator.getKorisnickoIme());
         sois.izvrsiOperaciju();
     }
 
