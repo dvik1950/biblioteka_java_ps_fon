@@ -71,74 +71,7 @@ public class Kontroler {
         sopa.izvrsiOperaciju();
         return sopa.getAdministrator();
     }
-//
-//    public boolean zapamtiKnjigu(Knjiga knjiga) throws ServerskiException {
-//        SOZapamtiKnjigu sozk = new SOZapamtiKnjigu(knjiga);
-//        sozk.izvrsiOperaciju();
-//        return sozk.isUspesnost();
-//    }
-//
-//    public ArrayList<Knjiga> nadjiKnjige(String[] pretraga) throws ServerskiException {
-//        SONadjiiKnjige sonk = new SONadjiiKnjige();
-//        sonk.setPretraga(pretraga);
-//        sonk.izvrsiOperaciju();
-//        return sonk.getListaKnjiga();
-//    }
-//
-//    public boolean sacuvajPrimerak(Primerak primerak) throws ServerskiException {
-//        SOSacuvajPrimerak sosp = new SOSacuvajPrimerak();
-//        sosp.setPrimerak(primerak);
-//        sosp.izvrsiOperaciju();
-//        return sosp.isUspesnost();
-//    }
-//
-//    public ArrayList<Primerak> pronadjiSvePrimerkeZaKnjigu(Knjiga k) throws ServerskiException {
-//        SOPronadjiSvePrimerkeZaKnjigu sopspzk = new SOPronadjiSvePrimerkeZaKnjigu();
-//        sopspzk.setKnjiga(k);
-//        sopspzk.izvrsiOperaciju();
-//        return sopspzk.getListaPrimeraka();
-//    }
-//
-//    public boolean obrisiPrimerak(Primerak p) throws ServerskiException {
-//        SOObrisiPrimerak soop = new SOObrisiPrimerak();
-//        soop.setPrimerak(p);
-//        soop.izvrsiOperaciju();
-//        return soop.isUspesno();
-//    }
-//
-//    public boolean sacuvajClana(Clan c) throws ServerskiException {
-//        SOSacuvajClana sosc = new SOSacuvajClana();
-//        sosc.setC(c);
-//        sosc.izvrsiOperaciju();
-//        return sosc.isUspesno();
-//    }
-//
-//    public ArrayList<Clan> pretraziClanove(String[] pretraga) throws ServerskiException {
-//        SOPretraziClanove sopc = new SOPretraziClanove();
-//        sopc.setPretraga(pretraga);
-//        sopc.izvrsiOperaciju();
-//        return sopc.getListaClanova();
-//    }
-//
-//    public boolean izmeniClana(Clan c) throws ServerskiException {
-//        SOIzmeniClana soic = new SOIzmeniClana();
-//        soic.setC(c);
-//        soic.izvrsiOperaciju();
-//        return soic.isUspesno();
-//    }
-//
-//    public boolean sacuvajIznajmljivanje(Iznajmljivanje i) throws ServerskiException {
-//        SOSacuvajIznajmljivanje sosi = new SOSacuvajIznajmljivanje();
-//        sosi.setI(i);
-//        sosi.izvrsiOperaciju();
-//        return sosi.isUspesno();
-//    }
-//
-//    public void odjaviAdministratora(Administrator administrator) throws ServerskiException {
-//        SOOdjaviAdministratora sooa = new SOOdjaviAdministratora();
-//        sooa.setAdministrator(administrator);
-//        sooa.izvrsiOperaciju();
-//    }
+
 
     public void kreirajAdministratora(Administrator a) throws ServerskiException {
         so.pomocne.SOKreirajAdministratora ka = new SOKreirajAdministratora();
