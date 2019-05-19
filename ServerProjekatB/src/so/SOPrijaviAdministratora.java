@@ -23,27 +23,16 @@ public class SOPrijaviAdministratora extends OpstaSistemskaOperacija {
     @Override
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
         List<Administrator> listaAdministratora = Kontroler.vratiInstancu().getListaKorisnika();
-
         administrator = dbb.prijaviAdministratora(parametar);
-        System.out.println("x");
         if (administrator.getKorisnickoIme() != null) {
-            System.out.println("y");
             for (Administrator adminIzListe : listaAdministratora) {
                 if (adminIzListe.equals(administrator)) {
-                    System.out.println("nasao admina u listi");
                     if (adminIzListe.isUlogovan()) {
-                        throw new ServerskiException("Administrator je vec ulogovan");
+                        throw new ServerskiException("Administrator je već ulogovan");
                     } else {
-                        System.out.println("3");
                         int indeks = listaAdministratora.indexOf(adminIzListe);
-                        System.out.println(indeks);
-                        listaAdministratora.get(indeks).setUlogovan(true);
-                        System.out.println(listaAdministratora.get(0).isUlogovan());
-                        Kontroler.vratiInstancu().setListaKorisnika(listaAdministratora);
-                        System.out.println(Kontroler.vratiInstancu().getListaKorisnika().get(0).isUlogovan());
+                        Kontroler.vratiInstancu().getListaKorisnika().get(indeks).setUlogovan(true);
                     }
-                } else {
-                    System.out.println("not equal");
                 }
             }
         }
