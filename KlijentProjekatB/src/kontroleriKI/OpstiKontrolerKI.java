@@ -177,4 +177,16 @@ public class OpstiKontrolerKI {
     public void zavrsiSaRadom(Administrator ulogovaniAdministrator) throws Exception {
         posaljiZahtev(Operacije.IZLOGUJ, ulogovaniAdministrator);
     }
+    
+    
+    // Pomoćne metode
+    
+       public Administrator adminHashUadminObjekat(HashMap<String, String> adminHash){
+        Administrator administrator = new Administrator();
+        administrator.setSifraAdmina(adminHash.get("SifraAdmina"));
+        administrator.setKorisnickoIme(adminHash.get("KorisnickoIme"));
+        administrator.setIme(adminHash.get("Ime"));
+        administrator.setPrezime(adminHash.get("Prezime"));
+        return administrator;
+    }
 }

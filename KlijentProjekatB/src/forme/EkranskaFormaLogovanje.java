@@ -1,25 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
-import domen.Administrator;
 import domen.OpstiDomenskiObjekat;
 import java.io.IOException;
-import java.net.Socket;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import komunikacija.KomunikacijaSaServerom;
 import kontroleriKI.OpstiKontrolerKI;
 
-/**
- *
- * @author FON
- */
+
 public class EkranskaFormaLogovanje extends OpstaEkranskaForma {
 
     /**
@@ -28,7 +15,6 @@ public class EkranskaFormaLogovanje extends OpstaEkranskaForma {
     public EkranskaFormaLogovanje() {
         initComponents();
         postaviImeForme();
-
     }
 
     /**
@@ -116,9 +102,9 @@ public class EkranskaFormaLogovanje extends OpstaEkranskaForma {
             HashMap<String, String> adminHash = prijaviAdministratora();
             ulogujAdministratora(adminHash);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Konekcija na server nije uspela", "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Konekcija na server nije uspela", "Greška", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Administrator sa datim korisničkim imenom je već ulogovan.", "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Administrator sa datim korisničkim imenom je već ulogovan.", "Greška", JOptionPane.ERROR_MESSAGE);
         } 
        
     }//GEN-LAST:event_btnUlogujSeActionPerformed
@@ -203,22 +189,13 @@ public class EkranskaFormaLogovanje extends OpstaEkranskaForma {
     private void ulogujAdministratora(HashMap<String, String> prijavljeniAdministratorHash){
         if(prijavljeniAdministratorHash != null){
             GlavnaEkranskaForma gef = new GlavnaEkranskaForma();
-            gef.setUlogovaniAdministrator(adminHashUadminObjekat(prijavljeniAdministratorHash));
+            gef.setUlogovaniAdministrator(OpstiKontrolerKI.vratiInstancu().adminHashUadminObjekat(prijavljeniAdministratorHash));
             gef.setVisible(true);
             dispose();
             JOptionPane.showMessageDialog(gef, "Administrator je uspešno ulogovan");
         }else{
             JOptionPane.showMessageDialog(this, "Administrator nije uneo tačne podatke", "Greska", JOptionPane.ERROR_MESSAGE);
         }
-    }
-    
-    private Administrator adminHashUadminObjekat(HashMap<String, String> adminHash){
-        Administrator administrator = new Administrator();
-        administrator.setSifraAdmina(adminHash.get("SifraAdmina"));
-        administrator.setKorisnickoIme(adminHash.get("KorisnickoIme"));
-        administrator.setIme(adminHash.get("Ime"));
-        administrator.setPrezime(adminHash.get("Prezime"));
-        return administrator;
     }
     
          private void uspostaviKomunikaciju() throws IOException {
