@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kontroleriKI;
 
 import domen.Administrator;
@@ -21,10 +16,7 @@ import konstante.Operacije;
 import transfer.KlijentskiZahtev;
 import transfer.ServerskiOdgovor;
 
-/**
- *
- * @author FON
- */
+
 public class OpstiKontrolerKI {
 
     public static OpstiKontrolerKI instanca;
@@ -37,28 +29,6 @@ public class OpstiKontrolerKI {
             instanca = new OpstiKontrolerKI();
         }
         return instanca;
-    }
-
-    protected Object posaljiZahtev(int operacija, Object parametar) throws Exception {
-        KlijentskiZahtev kz = new KlijentskiZahtev();
-        kz.setOperacija(operacija);
-        kz.setParametar(parametar);
-        KomunikacijaSaServerom.vratiInstancu().posaljiZahtev(kz);
-        ServerskiOdgovor so = KomunikacijaSaServerom.vratiInstancu().procitajOdgovor();
-        if (so.getUspesnost() == 1) {
-            return so.getPodaci();
-        } else {
-            Exception ex = so.getException();
-            throw ex;
-        }
-    }
-
-    public void uspostaviKomunikaciju() throws IOException {
-        if (KomunikacijaSaServerom.vratiInstancu().getSocket() == null) {
-            Socket socket = new Socket("localhost", 9000);
-            KomunikacijaSaServerom.vratiInstancu().setSocket(socket);
-            System.out.println("Klijent je povezan na server.");
-        }
     }
 
     public HashMap<String, String> prijaviAdministratora(String korisnickoIme, String korisnickaLozinka) throws ServerskiException, Exception {
@@ -78,19 +48,19 @@ public class OpstiKontrolerKI {
         return null;
     }
 
-    public OpstiDomenskiObjekat kreirajObjekat(OpstiDomenskiObjekat odo) throws Exception{
-        if(odo instanceof Knjiga){
+    public OpstiDomenskiObjekat kreirajObjekat(OpstiDomenskiObjekat odo) throws Exception {
+        if (odo instanceof Knjiga) {
             return (OpstiDomenskiObjekat) posaljiZahtev(Operacije.KREIRAJ_NOVU_KNJIGU, null);
-        }else if(odo instanceof Clan){
+        } else if (odo instanceof Clan) {
             return (OpstiDomenskiObjekat) posaljiZahtev(Operacije.KREIRAJ_CLANA, null);
         }
         throw new Exception("Metodi je prosledjen pogresan objekat");
     }
 
     public OpstiDomenskiObjekat zapamtiObjekat(OpstiDomenskiObjekat odo) throws Exception {
-        if(odo instanceof Knjiga){
+        if (odo instanceof Knjiga) {
             return (OpstiDomenskiObjekat) posaljiZahtev(Operacije.ZAPAMTI_KNJIGU, odo);
-        }else if(odo instanceof Primerak){
+        } else if (odo instanceof Primerak) {
             return (OpstiDomenskiObjekat) posaljiZahtev(Operacije.ZAPAMTI_PRIMERAK, odo);
         }
         throw new Exception("Metodi je prosledjen pogresan objekat");
@@ -177,11 +147,9 @@ public class OpstiKontrolerKI {
     public void zavrsiSaRadom(Administrator ulogovaniAdministrator) throws Exception {
         posaljiZahtev(Operacije.IZLOGUJ, ulogovaniAdministrator);
     }
-    
-    
+
     // Pomoćne metode
-    
-       public Administrator adminHashUadminObjekat(HashMap<String, String> adminHash){
+    public Administrator adminHashUadminObjekat(HashMap<String, String> adminHash) {
         Administrator administrator = new Administrator();
         administrator.setSifraAdmina(adminHash.get("SifraAdmina"));
         administrator.setKorisnickoIme(adminHash.get("KorisnickoIme"));
@@ -189,4 +157,27 @@ public class OpstiKontrolerKI {
         administrator.setPrezime(adminHash.get("Prezime"));
         return administrator;
     }
+
+    protected Object posaljiZahtev(int operacija, Object parametar) throws Exception {
+        KlijentskiZahtev kz = new KlijentskiZahtev();
+        kz.setOperacija(operacija);
+        kz.setParametar(parametar);
+        KomunikacijaSaServerom.vratiInstancu().posaljiZahtev(kz);
+        ServerskiOdgovor so = KomunikacijaSaServerom.vratiInstancu().procitajOdgovor();
+        if (so.getUspesnost() == 1) {
+            return so.getPodaci();
+        } else {
+            Exception ex = so.getException();
+            throw ex;
+        }
+    }
+
+    public void uspostaviKomunikaciju() throws IOException {
+        if (KomunikacijaSaServerom.vratiInstancu().getSocket() == null) {
+            Socket socket = new Socket("localhost", 9000);
+            KomunikacijaSaServerom.vratiInstancu().setSocket(socket);
+            System.out.println("Klijent je povezan na server.");
+        }
+    }
+
 }
