@@ -156,7 +156,7 @@ public class EkranskaFormaLogovanje extends OpstaEkranskaForma {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    OpstiDomenskiObjekat kreirajObjekat() {
+    HashMap<String, String> kreirajObjekat() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

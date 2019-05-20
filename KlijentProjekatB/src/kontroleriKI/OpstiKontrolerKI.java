@@ -48,22 +48,49 @@ public class OpstiKontrolerKI {
         return null;
     }
 
-    public OpstiDomenskiObjekat kreirajObjekat(OpstiDomenskiObjekat odo) throws Exception {
-        if (odo instanceof Knjiga) {
-            return (OpstiDomenskiObjekat) posaljiZahtev(Operacije.KREIRAJ_NOVU_KNJIGU, null);
-        } else if (odo instanceof Clan) {
-            return (OpstiDomenskiObjekat) posaljiZahtev(Operacije.KREIRAJ_CLANA, null);
+    public HashMap<String, String> kreirajObjekat(String nazivObjekta) throws Exception {
+        switch(nazivObjekta){
+            case "knjiga":
+                Knjiga novaKnjiga = (Knjiga) posaljiZahtev(Operacije.KREIRAJ_NOVU_KNJIGU, null);
+                HashMap<String, String> hashMapNoveKnjige = new HashMap<>();
+                hashMapNoveKnjige.put("isbn", novaKnjiga.getISBN());
+                hashMapNoveKnjige.put("naziv", novaKnjiga.getNazivKnjige());
+                hashMapNoveKnjige.put("autor", novaKnjiga.getAutor());
+                hashMapNoveKnjige.put("godina", Integer.toString(novaKnjiga.getGodinaObjavljivanja()));
+                return hashMapNoveKnjige;
+            case "clan":
+                Clan noviClan = (Clan) posaljiZahtev(Operacije.KREIRAJ_CLANA, null);
+                HashMap<String, String> hashMapNovogClana = new HashMap<>();
+                hashMapNovogClana.put("sifra", noviClan.getSifraClana());
+            default: throw new Exception("Pokušavate da kreirate nepoznat objekta.");
         }
-        throw new Exception("Metodi je prosledjen pogresan objekat");
     }
 
-    public OpstiDomenskiObjekat zapamtiObjekat(OpstiDomenskiObjekat odo) throws Exception {
-        if (odo instanceof Knjiga) {
-            return (OpstiDomenskiObjekat) posaljiZahtev(Operacije.ZAPAMTI_KNJIGU, odo);
-        } else if (odo instanceof Primerak) {
-            return (OpstiDomenskiObjekat) posaljiZahtev(Operacije.ZAPAMTI_PRIMERAK, odo);
+    
+    
+    
+    
+    public boolean zapamtiObjekat(HashMap<String, String> objekatZaPamcenje) throws Exception {
+        switch(objekatZaPamcenje.get("tip")){
+            case "knjiga":
+                Knjiga knjigaZaPamcenje = new Knjiga();
+                knjigaZaPamcenje.setAutor(objekatZaPamcenje.get("autor"));
+                knjigaZaPamcenje.setISBN(objekatZaPamcenje.get("isbn"));
+                knjigaZaPamcenje.setGodinaObjavljivanja(Integer.parseInt(objekatZaPamcenje.get("godina")));
+                knjigaZaPamcenje.setAutor(objekatZaPamcenje.get("autor"));
+                if(posaljiZahtev(Operacije.ZAPAMTI_KNJIGU, knjigaZaPamcenje) != null){
+                    return true;
+                }
+            case "primerak":
+                Primerak primerakZaPamcenje = new Primerak();
+                primerakZaPamcenje.setISBN(objekatZaPamcenje.get("isbn"));
+                primerakZaPamcenje.setIzdavac(objekatZaPamcenje.get("izdavac"));
+                primerakZaPamcenje.setSifraPrimerka(objekatZaPamcenje.get("sifra"));
+            if(posaljiZahtev(Operacije.ZAPAMTI_PRIMERAK, primerakZaPamcenje) != null){
+                return true;
+            }
+            default: throw new Exception("Pokušavate da zapamtite nepoznat objekta.");
         }
-        throw new Exception("Metodi je prosledjen pogresan objekat");
     }
 
     public ArrayList<Knjiga> nadjiKnjige(HashMap kriterijum) throws Exception {

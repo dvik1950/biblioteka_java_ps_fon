@@ -1,17 +1,12 @@
 package forme;
 
 import domen.Knjiga;
-import domen.OpstiDomenskiObjekat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import kontroleriKI.OpstiKontrolerKI;
-import modeli.ModelTabeleKnjige;
-
 
 public class EkranskaFormaKnjige extends OpstaEkranskaForma {
 
@@ -171,7 +166,7 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnKreirajNovuKnjiguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajNovuKnjiguActionPerformed
-        Knjiga novaKnjiga = (Knjiga) kreirajObjekat();
+        HashMap<String, String> novaKnjiga = kreirajObjekat();
         if (novaKnjiga != null) {
             popuniPolja(novaKnjiga);
             btnZapamtiKnjigu.setEnabled(true);
@@ -228,9 +223,9 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
     }
 
     @Override
-    OpstiDomenskiObjekat kreirajObjekat() {
+    HashMap<String, String> kreirajObjekat() {
         try {
-            return OpstiKontrolerKI.vratiInstancu().kreirajObjekat(new Knjiga());
+            return OpstiKontrolerKI.vratiInstancu().kreirajObjekat("knjiga");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Sistem ne može da kreira knjigu", "Greška", JOptionPane.ERROR_MESSAGE);
             return null;
@@ -281,26 +276,34 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
     }
 
     private void zapamtiKnjigu() throws Exception {
-        Knjiga k = pokupiPodatke();
-        if (OpstiKontrolerKI.vratiInstancu().zapamtiObjekat(k) != null) {
+        HashMap<String, String> hashMapKnjige = pokupiPodatke();
+        if (OpstiKontrolerKI.vratiInstancu().zapamtiObjekat(hashMapKnjige)) {
             btnZapamtiKnjigu.setEnabled(false);
-            JOptionPane.showMessageDialog(this, "Sistem je zapamtio knjigu: \n Naziv knjige: " + k.getNazivKnjige()
-                    + "\n Autor: " + k.getAutor()
-                    + "\n Godina objavljivanja: " + k.getGodinaObjavljivanja()
-                    + "\n ISBN: " + k.getISBN());
+            JOptionPane.showMessageDialog(this, "Sistem je zapamtio knjigu: \n Naziv knjige: " + hashMapKnjige.get("naziv")
+                    + "\n Autor: " + hashMapKnjige.get("autor")
+                    + "\n Godina objavljivanja: " + hashMapKnjige.get("godina")
+                    + "\n ISBN: " + hashMapKnjige.get("isbn"));
             isprazniPolja();
+        }else{
+            JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti knjigu.");
         }
     }
 
-    private void popuniPolja(Knjiga novaKnjiga) {
-        txtAutor.setText(novaKnjiga.getAutor());
-        txtGodOb.setText(Integer.toString(novaKnjiga.getGodinaObjavljivanja()));
-        txtNaziv.setText(novaKnjiga.getNazivKnjige());
-        txtISBN.setText(novaKnjiga.getISBN());
+    private void popuniPolja(HashMap<String, String> novaKnjiga) {
+        txtAutor.setText(novaKnjiga.get("autor"));
+        txtGodOb.setText(novaKnjiga.get("godina"));
+        txtNaziv.setText(novaKnjiga.get("naziv"));
+        txtISBN.setText(novaKnjiga.get("isbn"));
     }
 
-    private Knjiga pokupiPodatke() {
-        return new Knjiga(txtISBN.getText(), txtNaziv.getText(), txtAutor.getText(), Integer.parseInt(txtGodOb.getText()));
+    private HashMap<String, String> pokupiPodatke() {
+        HashMap<String, String> hashMapKnjige = new HashMap<>();
+        hashMapKnjige.put("tip", "knjiga");
+        hashMapKnjige.put("isbn", txtISBN.getText());
+        hashMapKnjige.put("naziv", txtNaziv.getText());
+        hashMapKnjige.put("autor", txtAutor.getText());
+        hashMapKnjige.put("godina",txtGodOb.getText());
+        return hashMapKnjige;
     }
 
     private void isprazniPolja() {

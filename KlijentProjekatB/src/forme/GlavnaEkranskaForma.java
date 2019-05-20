@@ -11,6 +11,7 @@ import domen.Iznajmljivanje;
 import domen.Knjiga;
 import domen.OpstiDomenskiObjekat;
 import domen.Primerak;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -247,7 +248,7 @@ public class GlavnaEkranskaForma extends OpstaEkranskaForma {
     }
 
     @Override
-    OpstiDomenskiObjekat kreirajObjekat() {
+     HashMap<String, String> kreirajObjekat()  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

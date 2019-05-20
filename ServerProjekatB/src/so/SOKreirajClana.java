@@ -23,6 +23,7 @@ public class SOKreirajClana extends OpstaSistemskaOperacija{
         String sifraClana = Integer.toString(((int) (new Date().getTime() / 1000)));
         clan = new Clan();
         clan.setSifraClana(sifraClana);
+        dbb.sacuvajObjekat(clan);
     }
 
     public Clan getClan() {

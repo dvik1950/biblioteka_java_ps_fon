@@ -443,7 +443,7 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
     }
 
     @Override
-    OpstiDomenskiObjekat kreirajObjekat() {
+    HashMap<String, String> kreirajObjekat() {
         try {
             Primerak p = new Primerak();
             p.setISBN(modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()).getISBN());

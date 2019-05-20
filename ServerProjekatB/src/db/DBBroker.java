@@ -166,7 +166,6 @@ public class DBBroker {
 
         return null;
     }
-//
 
     public OpstiDomenskiObjekat obrisiObjekat(OpstiDomenskiObjekat o) throws ServerskiException {
         try {

@@ -14,6 +14,7 @@ import exception.ServerskiException;
  */
 public class SOZapamtiNovogClana extends OpstaSistemskaOperacija{
 
+     // treba da se izbaci ovaj SO, suvisan je
     private Clan clan;
     private boolean uspesno = false;
     

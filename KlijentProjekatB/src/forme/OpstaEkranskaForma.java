@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
 import domen.OpstiDomenskiObjekat;
+import java.util.HashMap;
 
-/**
- *
- * @author FON
- */
 abstract class OpstaEkranskaForma extends javax.swing.JFrame {
     
     GlavnaEkranskaForma glavna;
@@ -19,7 +11,7 @@ abstract class OpstaEkranskaForma extends javax.swing.JFrame {
         initComponents();
     }
 
-     abstract OpstiDomenskiObjekat kreirajObjekat();
+     abstract HashMap<String, String> kreirajObjekat();
      
      
      abstract void postaviImeForme();

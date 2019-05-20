@@ -293,7 +293,7 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
     }
 
     @Override
-    OpstiDomenskiObjekat kreirajObjekat() {
+    HashMap<String, String> kreirajObjekat() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

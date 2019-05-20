@@ -20,16 +20,23 @@ import kontroleriKI.OpstiKontrolerKI;
  * @author FON
  */
 public class EkranskaFormaClan extends OpstaEkranskaForma {
+
     private EkranskaFormaClanovi parentForma;
-    private Clan clan;
+//    private Clan clan;
+    private String sifraClana;
+    private String JMBG;
+    private String ime;
+    private String prezime;
+    private String telefon;
+    private String email;
     private String status; //"dodaj" ili "izmeni"
-    
+
     /**
      * Creates new form EkranskaFormaClan
      */
     public EkranskaFormaClan() {
         initComponents();
-        
+
     }
 
     /**
@@ -152,27 +159,32 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
-        if(ispravnoUnetiPodaci()){
-        if(status.equals("dodaj")){
+        if (ispravnoUnetiPodaci()) {
             try {
-                zapamtiNovogClana();
-            } catch (Exception ex) {
-                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else if(status.equals("izmeni")){
-            try {
+                //        if(status.equals("dodaj")){
+//            try {
+//                zapamtiNovogClana();
+//            } catch (Exception ex) {
+//                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }else if(status.equals("izmeni")){
+//            try {
+//                zapamtiClana();
+//            } catch (Exception ex) {
+//                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }else{
+//            try {
+//                throw new Exception("Neispravan status ekranske forme!");
+//            } catch (Exception ex) {
+//                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
                 zapamtiClana();
             } catch (Exception ex) {
                 Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-            try {
-                throw new Exception("Neispravan status ekranske forme!");
-            } catch (Exception ex) {
-                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Neispravno uneti podaci.");
         }
     }//GEN-LAST:event_btnSacuvajActionPerformed
@@ -234,79 +246,54 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 
-    public String getStatus() {
-        return status;
-    }
+//    public String getStatus() {
+//        return status;
+//    }
 
     public void setStatus(String status) throws Exception {
         this.status = status;
-        if(status.equals("dodaj")) clan = kreirajClana();
+        if (status.equals("dodaj")) {
+            kreirajClana();
+        }
         postaviImeForme();
         zakljucajSifruClana();
     }
-    
-    
 
-    private void sacuvajClana() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    private void sacuvajClana() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     private void zapamtiNovogClana() throws Exception {
         boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiNovogClana(pokupiPodatkeIzPolja());
-        if(uspesno){
+        if (uspesno) {
             zatvoriFormu();
             JOptionPane.showMessageDialog(parentForma, "Sistem je zapamtio novog člana");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(parentForma, "Sistem ne može da zapamti novog člana");
         }
     }
-    
-    private void zatvoriFormu(){
+
+    private void zatvoriFormu() {
         parentForma.setVisible(true);
         dispose();
     }
 
-    public Clan getClan() {
-        return clan;
-    }
-
-    public void setClan(Clan clan) {
-        this.clan = clan;
-        popuniPolja();
-    }
-
-    private Clan kreirajClana() throws Exception {
-        clan = (Clan) OpstiKontrolerKI.vratiInstancu().kreirajObjekat(new Clan());
-        return clan;
+    private void kreirajClana() throws Exception {
+        this.sifraClana = OpstiKontrolerKI.vratiInstancu().kreirajObjekat("clan").get("sifra");
     }
 
     @Override
-    OpstiDomenskiObjekat kreirajObjekat() { //snima clana u bazu
+    HashMap<String, String> kreirajObjekat() { //snima clana u bazu
         throw new UnsupportedOperationException("greska");
     }
 
     @Override
     void postaviImeForme() {
-        if(status.equals("dodaj")){
+        if (status.equals("dodaj")) {
             this.setTitle("Kreiranje novog člana");
-        }else if(status.equals("izmeni")){
+        } else if (status.equals("izmeni")) {
             this.setTitle("Izmena člana");
         }
-    }
-
-    @Override
-    void postaviModeleTabela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void popuniTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void postaviToolTipove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public EkranskaFormaClanovi getParentForma() {
@@ -322,15 +309,27 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
     }
 
     private void popuniPolja() {
-        if(clan.getSifraClana() != null) txtSifraClana.setText(clan.getSifraClana());
-        if(clan.getJMBG()!= null) txtJMBG.setText(clan.getJMBG());
-        if(clan.getEmail()!= null) txtEmail.setText(clan.getEmail());
-        if(clan.getIme()!= null) txtIme.setText(clan.getIme());
-        if(clan.getPrezime()!= null) txtPrezime.setText(clan.getPrezime());
-        if(clan.getTelefon()!= null) txtTelefon.setText(clan.getTelefon());
+        if (sifraClana != null) {
+            txtSifraClana.setText(sifraClana);
+        }
+        if (JMBG != null) {
+            txtJMBG.setText(JMBG);
+        }
+        if (email != null) {
+            txtEmail.setText(email);
+        }
+        if (ime != null) {
+            txtIme.setText(ime);
+        }
+        if (prezime != null) {
+            txtPrezime.setText(prezime);
+        }
+        if (telefon != null) {
+            txtTelefon.setText(telefon);
+        }
     }
-    
-    private HashMap<String, String> pokupiPodatkeIzPolja(){
+
+    private HashMap<String, String> pokupiPodatkeIzPolja() {
         HashMap<String, String> podaci = new HashMap<>();
         podaci.put("sifra", txtSifraClana.getText());
         podaci.put("jmbg", txtJMBG.getText());
@@ -341,59 +340,129 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
         return podaci;
     }
 
-    
     private void zapamtiClana() throws Exception {
         boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiClana(pokupiPodatkeIzPolja());
-        if(uspesno){
-        zatvoriFormu();
-        JOptionPane.showConfirmDialog(parentForma, "Sistem je zapamtio člana.");
-        parentForma.modelTabeleClanovi.setLista(new ArrayList<>());
-        }else{
-        zatvoriFormu();
-        JOptionPane.showConfirmDialog(parentForma, "Sistem ne može zapamti člana.");
+        if (uspesno) {
+            zatvoriFormu();
+            JOptionPane.showConfirmDialog(parentForma, "Sistem je zapamtio člana.");
+            parentForma.modelTabeleClanovi.setLista(new ArrayList<>());
+        } else {
+            zatvoriFormu();
+            JOptionPane.showConfirmDialog(parentForma, "Sistem ne može zapamti člana.");
         }
     }
 
+    //validacije
     private boolean ispravnoUnetiPodaci() {
-        if(ispravnoUnetEmail() && ispravnoUnetJMBG() && ispravnoUnetTelefon() && ispravnoUnetoIme() && ispravnoUnetoPrezime())
+        if (ispravnoUnetEmail() && ispravnoUnetJMBG() && ispravnoUnetTelefon() && ispravnoUnetoIme() && ispravnoUnetoPrezime()) {
             return true;
+        }
         return false;
     }
-    
 
-    
-    private boolean ispravnoUnetJMBG(){
+    private boolean ispravnoUnetJMBG() {
         String JMBG = txtJMBG.getText();
-        if(JMBG.matches("[0-9]+") && JMBG.length() == 13)
+        if (JMBG.matches("[0-9]+") && JMBG.length() == 13) {
             return true;
+        }
         return false;
     }
-    
-    private boolean ispravnoUnetoIme(){
+
+    private boolean ispravnoUnetoIme() {
         String ime = txtIme.getText();
-        if(ime.matches("[a-zA-Z]+") && ime.length() > 1)
+        if (ime.matches("[a-zA-Z]+") && ime.length() > 1) {
             return true;
+        }
         return false;
     }
-    
-    private boolean ispravnoUnetoPrezime(){
-     String prezime = txtPrezime.getText();
-        if(prezime.matches("[a-zA-Z]+") && prezime.length() > 1)
+
+    private boolean ispravnoUnetoPrezime() {
+        String prezime = txtPrezime.getText();
+        if (prezime.matches("[a-zA-Z]+") && prezime.length() > 1) {
             return true;
+        }
         return false;
     }
-    
-    private boolean ispravnoUnetTelefon(){
+
+    private boolean ispravnoUnetTelefon() {
         String telefon = txtTelefon.getText();
-        if(telefon.matches("[0-9]+") && telefon.length() > 2)
+        if (telefon.matches("[0-9]+") && telefon.length() > 2) {
             return true;
+        }
         return false;
     }
-    
-    private boolean ispravnoUnetEmail(){
+
+    private boolean ispravnoUnetEmail() {
         String email = txtEmail.getText();
-        if(email.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$"))
+        if (email.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
             return true;
+        }
         return false;
     }
+
+    //setteri i getteri
+    public String getSifraClana() {
+        return sifraClana;
+    }
+
+    public void setSifraClana(String sifraClana) {
+        this.sifraClana = sifraClana;
+    }
+
+    public String getJMBG() {
+        return JMBG;
+    }
+
+    public void setJMBG(String JMBG) {
+        this.JMBG = JMBG;
+    }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getPrezime() {
+        return prezime;
+    }
+
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    // neimplementirane metode
+    @Override
+    void postaviToolTipove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void postaviModeleTabela() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void popuniTabele() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
