@@ -228,7 +228,7 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     private void tabelaClanoviMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClanoviMouseClicked
         if (tabelaClanovi.getSelectedRow() != -1) {
             try {
-                nadjiIznajmljenePrimerke(modelTabeleClanovi.getLista().get(tabelaClanovi.getSelectedRow()));
+                nadjiIznajmljenePrimerke(modelTabeleClanovi.getLista().get(tabelaClanovi.getSelectedRow()).getSifraClana());
                 ofv.setStop(true);
             } catch (Exception ex) {
                 Logger.getLogger(EkranskaFormaVracanje.class.getName()).log(Level.SEVERE, null, ex);
@@ -354,9 +354,8 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
         ofv.start();
     }
 
-    private void nadjiIznajmljenePrimerke(Clan clan) throws Exception {
-        ArrayList<Primerak> listaPrimeraka = OpstiKontrolerKI.vratiInstancu().nadjiIznajmljenePrimerke(clan);
-        modelTabelePrimerci.setLista(listaPrimeraka);
+    private void nadjiIznajmljenePrimerke(String sifraClana) throws Exception {
+        OpstiKontrolerKI.vratiInstancu().nadjiIznajmljenePrimerke(sifraClana, this);
     }
 
     private void vratiPrimerak(Primerak primerak) throws Exception {

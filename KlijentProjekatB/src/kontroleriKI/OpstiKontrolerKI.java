@@ -210,8 +210,14 @@ public class OpstiKontrolerKI {
         return (boolean) posaljiZahtev(Operacije.ZAPAMTI_IZNAJMLJIVANJE, i);
     }
 
-    public ArrayList<Primerak> nadjiIznajmljenePrimerke(Clan clan) throws Exception {
-        return (ArrayList<Primerak>) posaljiZahtev(Operacije.NADJI_IZNAJMLJENE_PRIMERKE, clan);
+    public void nadjiIznajmljenePrimerke(String sifraClana, EkranskaFormaVracanje efv) throws Exception {
+        Clan clan = new Clan();
+        clan.setSifraClana(sifraClana);
+        ArrayList<Primerak> listaPrimeraka = (ArrayList<Primerak>) posaljiZahtev(Operacije.NADJI_IZNAJMLJENE_PRIMERKE, clan);
+        ModelTabelePrimerci mtp =  new ModelTabelePrimerci();
+        mtp.setLista(listaPrimeraka);
+        efv.setModelTabelePrimerci(mtp);
+        efv.getTabelaPrimerci().setModel(mtp);
     }
 
     public boolean vratiPrimerak(Primerak primerak) throws Exception {
