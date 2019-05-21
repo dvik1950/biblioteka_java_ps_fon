@@ -252,7 +252,7 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     private void btnVratiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVratiActionPerformed
         if(tabelaPrimerci.getSelectedRow() != -1){
             try {
-                vratiPrimerak(modelTabelePrimerci.getLista().get(tabelaPrimerci.getSelectedRow()));
+                vratiPrimerak(modelTabelePrimerci.getLista().get(tabelaPrimerci.getSelectedRow()).getSifraPrimerka());
             } catch (Exception ex) {
                 Logger.getLogger(EkranskaFormaVracanje.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -358,9 +358,9 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
         OpstiKontrolerKI.vratiInstancu().nadjiIznajmljenePrimerke(sifraClana, this);
     }
 
-    private void vratiPrimerak(Primerak primerak) throws Exception {
+    private void vratiPrimerak(String sifraPrimerka) throws Exception {
         boolean uspesno;
-        uspesno = OpstiKontrolerKI.vratiInstancu().vratiPrimerak(primerak);
+        uspesno = OpstiKontrolerKI.vratiInstancu().vratiPrimerak(sifraPrimerka);
         if(uspesno){
             JOptionPane.showMessageDialog(this, "Uspešno evidentirano vraćanje primerka");
         }else {

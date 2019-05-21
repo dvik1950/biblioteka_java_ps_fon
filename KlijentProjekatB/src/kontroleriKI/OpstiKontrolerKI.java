@@ -220,7 +220,9 @@ public class OpstiKontrolerKI {
         efv.getTabelaPrimerci().setModel(mtp);
     }
 
-    public boolean vratiPrimerak(Primerak primerak) throws Exception {
+    public boolean vratiPrimerak(String sifraPrimerka) throws Exception {
+        Primerak primerak = new Primerak();
+        primerak.setSifraPrimerka(sifraPrimerka);
         return (boolean) posaljiZahtev(Operacije.VRATI_PRIMERAK, primerak);
     }
 
