@@ -26,12 +26,14 @@ import modeli.ModelTabelePrimerci;
  */
 public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
 
-    ModelTabeleKnjige modelTabeleKnjige = new ModelTabeleKnjige();
-    ModelTabeleClanovi modelTabeleClanovi = new ModelTabeleClanovi();
-    ModelTabelePrimerci modelTabelePrimerci = new ModelTabelePrimerci();
-    ArrayList<Knjiga> listaKnjiga;
-    ArrayList<Primerak> listaPrimeraka;
-    ArrayList<Clan> listaClanova;
+    private ModelTabeleKnjige modelTabeleKnjige = new ModelTabeleKnjige();
+    private ModelTabeleClanovi modelTabeleClanovi = new ModelTabeleClanovi();
+    private ModelTabelePrimerci modelTabelePrimerci = new ModelTabelePrimerci();
+    
+    
+//    ArrayList<Knjiga> listaKnjiga;
+//    ArrayList<Primerak> listaPrimeraka;
+//    ArrayList<Clan> listaClanova;
 
     /**
      * Creates new form EkranskaFormaIznajmljivanje
@@ -41,7 +43,7 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
         postaviImeForme();
         postaviModeleTabela();
         try {
-            ucitajClanoveIKnjige();
+            OpstiKontrolerKI.vratiInstancu().ucitajClanovePrimerkeIKnjige(this);
         } catch (Exception ex) {
             Logger.getLogger(EkranskaFormaIznajmljivanje.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -302,14 +304,6 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
     private javax.swing.JTable tabelaPrimerci;
     // End of variables declaration//GEN-END:variables
 
-    private void ucitajClanoveIKnjige() throws Exception {
-        listaKnjiga = OpstiKontrolerKI.vratiInstancu().ucitajListuKnjiga();
-        listaPrimeraka = OpstiKontrolerKI.vratiInstancu().ucitajListuPrimeraka();
-        listaClanova = OpstiKontrolerKI.vratiInstancu().ucitajListuClanova();
-        modelTabeleClanovi.setLista(listaClanova);
-        modelTabeleKnjige.setLista(listaKnjiga);
-        modelTabelePrimerci.setLista(listaPrimeraka);
-    }
 
     private void postaviPrimerke(Knjiga k) {
         ArrayList<Primerak> trenutnaLista = new ArrayList<>();
@@ -333,5 +327,53 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
         } else {
             JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti iznajmljivanje");
         }
+    }
+
+    public ModelTabeleKnjige getModelTabeleKnjige() {
+        return modelTabeleKnjige;
+    }
+
+    public void setModelTabeleKnjige(ModelTabeleKnjige modelTabeleKnjige) {
+        this.modelTabeleKnjige = modelTabeleKnjige;
+    }
+
+    public ModelTabeleClanovi getModelTabeleClanovi() {
+        return modelTabeleClanovi;
+    }
+
+    public void setModelTabeleClanovi(ModelTabeleClanovi modelTabeleClanovi) {
+        this.modelTabeleClanovi = modelTabeleClanovi;
+    }
+
+    public ModelTabelePrimerci getModelTabelePrimerci() {
+        return modelTabelePrimerci;
+    }
+
+    public void setModelTabelePrimerci(ModelTabelePrimerci modelTabelePrimerci) {
+        this.modelTabelePrimerci = modelTabelePrimerci;
+    }
+
+    public javax.swing.JTable getTabelaClanovi() {
+        return tabelaClanovi;
+    }
+
+    public void setTabelaClanovi(javax.swing.JTable tabelaClanovi) {
+        this.tabelaClanovi = tabelaClanovi;
+    }
+
+    public javax.swing.JTable getTabelaKnjige() {
+        return tabelaKnjige;
+    }
+
+    public void setTabelaKnjige(javax.swing.JTable tabelaKnjige) {
+        this.tabelaKnjige = tabelaKnjige;
+    }
+
+    public javax.swing.JTable getTabelaPrimerci() {
+        return tabelaPrimerci;
+    }
+
+    public void setTabelaPrimerci(javax.swing.JTable tabelaPrimerci) {
+        this.tabelaPrimerci = tabelaPrimerci;
     }
 }

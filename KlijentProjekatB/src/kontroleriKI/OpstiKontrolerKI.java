@@ -7,6 +7,7 @@ import domen.Knjiga;
 import domen.OpstiDomenskiObjekat;
 import domen.Primerak;
 import exception.ServerskiException;
+import forme.EkranskaFormaIznajmljivanje;
 import forme.EkranskaFormaPrimerak;
 import java.io.IOException;
 import java.net.Socket;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import komunikacija.KomunikacijaSaServerom;
 import konstante.Operacije;
+import modeli.ModelTabeleClanovi;
 import modeli.ModelTabeleKnjige;
 import modeli.ModelTabelePrimerci;
 import transfer.KlijentskiZahtev;
@@ -241,6 +243,28 @@ public class OpstiKontrolerKI {
             KomunikacijaSaServerom.vratiInstancu().setSocket(socket);
             System.out.println("Klijent je povezan na server.");
         }
+    }
+
+    public void ucitajClanovePrimerkeIKnjige(EkranskaFormaIznajmljivanje efi) throws Exception {
+        ArrayList<Knjiga> listaKnjiga = OpstiKontrolerKI.vratiInstancu().ucitajListuKnjiga();
+        ArrayList<Primerak> listaPrimeraka = OpstiKontrolerKI.vratiInstancu().ucitajListuPrimeraka();
+        ArrayList<Clan> listaClanova = OpstiKontrolerKI.vratiInstancu().ucitajListuClanova();
+        
+        ModelTabeleClanovi mtc = new ModelTabeleClanovi();
+        mtc.setLista(listaClanova);
+        efi.getTabelaClanovi().setModel(mtc);
+        efi.setModelTabeleClanovi(mtc);
+        
+        ModelTabeleKnjige mtk = new ModelTabeleKnjige();
+        mtk.setLista(listaKnjiga);
+        efi.getTabelaKnjige().setModel(mtk);
+        efi.setModelTabeleKnjige(mtk);
+        
+        ModelTabelePrimerci mtp = new ModelTabelePrimerci();
+        mtp.setLista(listaPrimeraka);
+        efi.getTabelaPrimerci().setModel(mtp);
+        efi.setModelTabeleKnjige(mtk);
+        
     }
 
 }
