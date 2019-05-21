@@ -23,8 +23,8 @@ import modeli.ModelTabelePrimerci;
  */
 public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
 
-    ModelTabeleKnjige modelTabeleKnjige = new ModelTabeleKnjige();
-    ModelTabelePrimerci modelTabelePrimerci = new ModelTabelePrimerci();
+    private ModelTabeleKnjige modelTabeleKnjige = new ModelTabeleKnjige();
+    private ModelTabelePrimerci modelTabelePrimerci = new ModelTabelePrimerci();
 
     /**
      * Creates new form EkranskaFormaPrimerak
@@ -393,7 +393,7 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
     private void btnObrisiOdabraniPrimerakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiOdabraniPrimerakActionPerformed
         if (tabelaPrimerci.getSelectedRow() != -1) {
             try {
-                izbrisiPrimerak(modelTabelePrimerci.getLista().get(tabelaPrimerci.getSelectedRow()));
+                izbrisiPrimerak(modelTabelePrimerci.getLista().get(tabelaPrimerci.getSelectedRow()).getSifraPrimerka());
             } catch (Exception ex) {
                 Logger.getLogger(EkranskaFormaPrimerak.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -557,23 +557,38 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
 //    }
 
     private void pronadjiPrimerke(String isbn) throws Exception {
-        ArrayList<Primerak> listaPrimeraka = OpstiKontrolerKI.vratiInstancu().nadjiPrimerke(isbn);
-        modelTabelePrimerci.setLista(listaPrimeraka);
-        if (listaPrimeraka != null) {
+          boolean uspesno = OpstiKontrolerKI.vratiInstancu().nadjiPrimerke(isbn, this);
+        if (uspesno) {
             JOptionPane.showMessageDialog(this, "Sistem je našao primerke za datu knjigu.");
         } else {
             JOptionPane.showMessageDialog(this, "Sistem ne može da nađe primerke za datu knjigu.");
         }
     }
 
-    private void izbrisiPrimerak(Primerak primerak) throws Exception {
-        boolean uspesno = OpstiKontrolerKI.vratiInstancu().izbrisiPrimerak(primerak);
+    private void izbrisiPrimerak(String sifraPrimerka) throws Exception {
+        boolean uspesno = OpstiKontrolerKI.vratiInstancu().izbrisiPrimerak(sifraPrimerka);
         if (uspesno) {
             JOptionPane.showMessageDialog(this, "Sistem je obrisao izabrani primerak.");
             modelTabelePrimerci.setLista(new ArrayList<>());
         } else {
             JOptionPane.showMessageDialog(this, "Sistem ne može da obriše izabrani primerak.");
         }
+    }
+
+    public ModelTabeleKnjige getModelTabeleKnjige() {
+        return modelTabeleKnjige;
+    }
+
+    public void setModelTabeleKnjige(ModelTabeleKnjige modelTabeleKnjige) {
+        this.modelTabeleKnjige = modelTabeleKnjige;
+    }
+
+    public ModelTabelePrimerci getModelTabelePrimerci() {
+        return modelTabelePrimerci;
+    }
+
+    public void setModelTabelePrimerci(ModelTabelePrimerci modelTabelePrimerci) {
+        this.modelTabelePrimerci = modelTabelePrimerci;
     }
 
 }

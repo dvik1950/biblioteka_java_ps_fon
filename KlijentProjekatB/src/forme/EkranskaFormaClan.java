@@ -160,29 +160,24 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     private void btnSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacuvajActionPerformed
         if (ispravnoUnetiPodaci()) {
-            try {
-                //        if(status.equals("dodaj")){
-//            try {
-//                zapamtiNovogClana();
-//            } catch (Exception ex) {
-//                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }else if(status.equals("izmeni")){
-//            try {
-//                zapamtiClana();
-//            } catch (Exception ex) {
-//                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }else{
-//            try {
-//                throw new Exception("Neispravan status ekranske forme!");
-//            } catch (Exception ex) {
-//                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-                zapamtiClana();
-            } catch (Exception ex) {
-                Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
+            if (status.equals("dodaj")) {
+                try {
+                    zapamtiNovogClana();
+                } catch (Exception ex) {
+                    Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (status.equals("izmeni")) {
+                try {
+                    zapamtiClana();
+                } catch (Exception ex) {
+                    Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                try {
+                    throw new Exception("Neispravan status ekranske forme!");
+                } catch (Exception ex) {
+                    Logger.getLogger(EkranskaFormaClan.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Neispravno uneti podaci.");
@@ -249,7 +244,6 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 //    public String getStatus() {
 //        return status;
 //    }
-
     public void setStatus(String status) throws Exception {
         this.status = status;
         if (status.equals("dodaj")) {
@@ -262,9 +256,8 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 //    private void sacuvajClana() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-
     private void zapamtiNovogClana() throws Exception {
-        boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiNovogClana(pokupiPodatkeIzPolja());
+        boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiClana(pokupiPodatkeIzPolja());
         if (uspesno) {
             zatvoriFormu();
             JOptionPane.showMessageDialog(parentForma, "Sistem je zapamtio novog člana");

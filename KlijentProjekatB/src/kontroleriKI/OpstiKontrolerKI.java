@@ -7,15 +7,16 @@ import domen.Knjiga;
 import domen.OpstiDomenskiObjekat;
 import domen.Primerak;
 import exception.ServerskiException;
+import forme.EkranskaFormaPrimerak;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import komunikacija.KomunikacijaSaServerom;
 import konstante.Operacije;
+import modeli.ModelTabelePrimerci;
 import transfer.KlijentskiZahtev;
 import transfer.ServerskiOdgovor;
-
 
 public class OpstiKontrolerKI {
 
@@ -49,7 +50,7 @@ public class OpstiKontrolerKI {
     }
 
     public HashMap<String, String> kreirajObjekat(String nazivObjekta) throws Exception {
-        switch(nazivObjekta){
+        switch (nazivObjekta) {
             case "knjiga":
                 Knjiga novaKnjiga = (Knjiga) posaljiZahtev(Operacije.KREIRAJ_NOVU_KNJIGU, null);
                 HashMap<String, String> hashMapNoveKnjige = new HashMap<>();
@@ -62,23 +63,20 @@ public class OpstiKontrolerKI {
                 Clan noviClan = (Clan) posaljiZahtev(Operacije.KREIRAJ_CLANA, null);
                 HashMap<String, String> hashMapNovogClana = new HashMap<>();
                 hashMapNovogClana.put("sifra", noviClan.getSifraClana());
-            default: throw new Exception("Pokušavate da kreirate nepoznat objekta.");
+            default:
+                throw new Exception("Pokušavate da kreirate nepoznat objekta.");
         }
     }
 
-    
-    
-    
-    
     public boolean zapamtiObjekat(HashMap<String, String> objekatZaPamcenje) throws Exception {
-        switch(objekatZaPamcenje.get("tip")){
+        switch (objekatZaPamcenje.get("tip")) {
             case "knjiga":
                 Knjiga knjigaZaPamcenje = new Knjiga();
                 knjigaZaPamcenje.setAutor(objekatZaPamcenje.get("autor"));
                 knjigaZaPamcenje.setISBN(objekatZaPamcenje.get("isbn"));
                 knjigaZaPamcenje.setGodinaObjavljivanja(Integer.parseInt(objekatZaPamcenje.get("godina")));
                 knjigaZaPamcenje.setAutor(objekatZaPamcenje.get("autor"));
-                if(posaljiZahtev(Operacije.ZAPAMTI_KNJIGU, knjigaZaPamcenje) != null){
+                if (posaljiZahtev(Operacije.ZAPAMTI_KNJIGU, knjigaZaPamcenje) != null) {
                     return true;
                 }
             case "primerak":
@@ -86,10 +84,11 @@ public class OpstiKontrolerKI {
                 primerakZaPamcenje.setISBN(objekatZaPamcenje.get("isbn"));
                 primerakZaPamcenje.setIzdavac(objekatZaPamcenje.get("izdavac"));
                 primerakZaPamcenje.setSifraPrimerka(objekatZaPamcenje.get("sifra"));
-            if(posaljiZahtev(Operacije.ZAPAMTI_PRIMERAK, primerakZaPamcenje) != null){
-                return true;
-            }
-            default: throw new Exception("Pokušavate da zapamtite nepoznat objekta.");
+                if (posaljiZahtev(Operacije.ZAPAMTI_PRIMERAK, primerakZaPamcenje) != null) {
+                    return true;
+                }
+            default:
+                throw new Exception("Pokušavate da zapamtite nepoznat objekta.");
         }
     }
 
@@ -101,11 +100,21 @@ public class OpstiKontrolerKI {
         return (Knjiga) posaljiZahtev(Operacije.NADJI_KNJIGU, k);
     }
 
-    public ArrayList<Primerak> nadjiPrimerke(String isbn) throws Exception {
-        return (ArrayList<Primerak>) posaljiZahtev(Operacije.NADJI_PRIMERKE, isbn);
+    public boolean nadjiPrimerke(String isbn, EkranskaFormaPrimerak efp) throws Exception {
+        ArrayList<Primerak> listaPrimeraka = (ArrayList<Primerak>) posaljiZahtev(Operacije.NADJI_PRIMERKE, isbn);
+        if (listaPrimeraka != null) {
+            ModelTabelePrimerci mtp = new ModelTabelePrimerci();
+            mtp.setLista(listaPrimeraka);
+            efp.setModelTabelePrimerci(mtp);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean izbrisiPrimerak(Primerak primerak) throws Exception {
+    public boolean izbrisiPrimerak(String sifraPrimerka) throws Exception {
+        Primerak primerak = new Primerak();
+        primerak.setSifraPrimerka(sifraPrimerka);
         return (boolean) posaljiZahtev(Operacije.IZBRISI_PRIMERAK, primerak);
     }
 

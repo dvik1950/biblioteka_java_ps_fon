@@ -337,7 +337,6 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
     private javax.swing.JTextField txtSifraClana;
     // End of variables declaration//GEN-END:variables
 
-
     private void nadjiClanove() throws Exception {
         HashMap<String, String> kriterijum = new HashMap<>();
         if (!txtSifraClana.getText().isEmpty()) {
@@ -381,14 +380,13 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
     }
 
     //validacije
-    
-        private boolean validnaPretraga() {
+    private boolean validnaPretraga() {
         if (validanJMBG() && validnoIme() && validnoPrezime() && validnaSifraClana()) {
             return true;
         }
         return false;
     }
-    
+
     private boolean validanJMBG() {
         String JMBG = txtJMBG.getText();
         if ((JMBG.matches("[0-9]+") && JMBG.length() == 13) || JMBG.isEmpty()) {
