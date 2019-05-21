@@ -375,6 +375,7 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
         efc.setTelefon(hashMapClana.get("telefon"));
         efc.setEmail(hashMapClana.get("email"));
         efc.setSifraClana(hashMapClana.get("sifra"));
+        efc.popuniPolja();
         efc.setVisible(true);
         dispose();
     }

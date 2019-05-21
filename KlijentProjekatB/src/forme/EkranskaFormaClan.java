@@ -292,7 +292,7 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
         txtSifraClana.setEditable(false);
     }
 
-    private void popuniPolja() {
+    public void popuniPolja() {
         if (sifraClana != null) {
             txtSifraClana.setText(sifraClana);
         }
@@ -328,11 +328,11 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
         boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiClana(pokupiPodatkeIzPolja());
         if (uspesno) {
             zatvoriFormu();
-            JOptionPane.showConfirmDialog(parentForma, "Sistem je zapamtio člana.");
+            JOptionPane.showMessageDialog(parentForma, "Sistem je zapamtio člana.");
             parentForma.modelTabeleClanovi.setLista(new ArrayList<>());
         } else {
             zatvoriFormu();
-            JOptionPane.showConfirmDialog(parentForma, "Sistem ne može zapamti člana.");
+            JOptionPane.showMessageDialog(parentForma, "Sistem ne može zapamti člana.");
         }
     }
 
