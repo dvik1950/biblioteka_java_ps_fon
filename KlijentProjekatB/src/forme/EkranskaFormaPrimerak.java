@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
 import domen.Knjiga;
@@ -17,10 +12,6 @@ import kontroleriKI.OpstiKontrolerKI;
 import modeli.ModelTabeleKnjige;
 import modeli.ModelTabelePrimerci;
 
-/**
- *
- * @author FON
- */
 public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
 
     private ModelTabeleKnjige modelTabeleKnjige = new ModelTabeleKnjige();
@@ -542,19 +533,6 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
                 + "Godina objavljivanja knjige: " + hashMapKnjige.get("godina") + "\n");
     }
 
-//    private void zapamtiPrimerak() throws Exception {
-//        Primerak p = new Primerak();
-//        p.setISBN(modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()).getISBN());
-//        p.setIzdavac(txtIzdavac.getText());
-//        Primerak zapamceniPrimerak = (Primerak) OpstiKontrolerKI.vratiInstancu().zapamtiObjekat(p);
-//        if (zapamceniPrimerak != null) {
-//            JOptionPane.showMessageDialog(this, "Sistem je zapamtio primerak. \n ISBN: " + zapamceniPrimerak.getISBN()
-//                    + "\n Izdavac: " + zapamceniPrimerak.getIzdavac());
-//            txtIzdavac.setText("");
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Sistem ne moze da zapamti primerak.");
-//        }
-//    }
     private void pronadjiPrimerke(String isbn) throws Exception {
         boolean uspesno = OpstiKontrolerKI.vratiInstancu().nadjiPrimerke(isbn, this);
         if (uspesno) {
