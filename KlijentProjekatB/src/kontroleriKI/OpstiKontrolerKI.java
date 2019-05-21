@@ -136,8 +136,18 @@ public class OpstiKontrolerKI {
         return (boolean) posaljiZahtev(Operacije.ZAPAMTI_CLANA, clan);
     }
 
-    public Clan nadjiClana(Clan clan) throws Exception {
-        return (Clan) posaljiZahtev(Operacije.NADJI_CLANA, clan);
+    public HashMap<String, String> nadjiClana(String sifraClana) throws Exception {
+        HashMap<String, String> hashMapClana = new HashMap<>();
+        Clan clan = new Clan();
+        clan.setSifraClana(sifraClana);
+        clan = (Clan) posaljiZahtev(Operacije.NADJI_CLANA, sifraClana);
+        hashMapClana.put("sifra", clan.getSifraClana());
+        hashMapClana.put("jmbg", clan.getJMBG());
+        hashMapClana.put("ime", clan.getIme());
+        hashMapClana.put("prezime", clan.getPrezime());
+        hashMapClana.put("telefon", clan.getTelefon());
+        hashMapClana.put("email", clan.getEmail());
+        return hashMapClana;
     }
 
     public ArrayList<Knjiga> ucitajListuKnjiga() throws Exception {

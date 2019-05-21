@@ -247,7 +247,7 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
     private void btnIzmeniOdabranogClanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmeniOdabranogClanaActionPerformed
         if (tabelaClanovi.getSelectedRow() != -1) {
             try {
-                izmeniClana(modelTabeleClanovi.getLista().get(tabelaClanovi.getSelectedRow()));
+                izmeniClana(modelTabeleClanovi.getLista().get(tabelaClanovi.getSelectedRow()).getSifraClana());
             } catch (Exception ex) {
                 Logger.getLogger(EkranskaFormaClanovi.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -337,12 +337,6 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
     private javax.swing.JTextField txtSifraClana;
     // End of variables declaration//GEN-END:variables
 
-    private boolean validnaPretraga() {
-        if (validanJMBG() && validnoIme() && validnoPrezime() && validnaSifraClana()) {
-            return true;
-        }
-        return false;
-    }
 
     private void nadjiClanove() throws Exception {
         HashMap<String, String> kriterijum = new HashMap<>();
@@ -371,16 +365,30 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
         dispose();
     }
 
-    private void izmeniClana(Clan clan) throws Exception {
+    private void izmeniClana(String sifraClana) throws Exception {
         EkranskaFormaClan efc = new EkranskaFormaClan();
         efc.setParentForma(this);
         efc.setStatus("izmeni");
-        Clan ceoClan = OpstiKontrolerKI.vratiInstancu().nadjiClana(clan);
-        efc.setClan(ceoClan);
+        HashMap<String, String> hashMapClana = OpstiKontrolerKI.vratiInstancu().nadjiClana(sifraClana);
+        efc.setJMBG(hashMapClana.get("jmbg"));
+        efc.setIme(hashMapClana.get("ime"));
+        efc.setPrezime(hashMapClana.get("prezime"));
+        efc.setTelefon(hashMapClana.get("telefon"));
+        efc.setEmail(hashMapClana.get("email"));
+        efc.setSifraClana(hashMapClana.get("sifra"));
         efc.setVisible(true);
         dispose();
     }
 
+    //validacije
+    
+        private boolean validnaPretraga() {
+        if (validanJMBG() && validnoIme() && validnoPrezime() && validnaSifraClana()) {
+            return true;
+        }
+        return false;
+    }
+    
     private boolean validanJMBG() {
         String JMBG = txtJMBG.getText();
         if ((JMBG.matches("[0-9]+") && JMBG.length() == 13) || JMBG.isEmpty()) {
