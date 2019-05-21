@@ -73,7 +73,7 @@ public class OpstiKontrolerKI {
         switch (objekatZaPamcenje.get("tip")) {
             case "knjiga":
                 Knjiga knjigaZaPamcenje = new Knjiga();
-                knjigaZaPamcenje.setAutor(objekatZaPamcenje.get("autor"));
+                knjigaZaPamcenje.setNazivKnjige(objekatZaPamcenje.get("naziv"));
                 knjigaZaPamcenje.setISBN(objekatZaPamcenje.get("isbn"));
                 knjigaZaPamcenje.setGodinaObjavljivanja(Integer.parseInt(objekatZaPamcenje.get("godina")));
                 knjigaZaPamcenje.setAutor(objekatZaPamcenje.get("autor"));
