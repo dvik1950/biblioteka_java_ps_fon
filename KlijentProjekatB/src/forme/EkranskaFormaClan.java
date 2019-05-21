@@ -378,7 +378,7 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     private boolean ispravnoUnetEmail() {
         String email = txtEmail.getText();
-        if (email.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
+        if (email.matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")) {
             return true;
         }
         return false;
