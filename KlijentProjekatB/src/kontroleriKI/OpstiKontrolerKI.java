@@ -121,6 +121,7 @@ public class OpstiKontrolerKI {
             ModelTabelePrimerci mtp = new ModelTabelePrimerci();
             mtp.setLista(listaPrimeraka);
             efp.setModelTabelePrimerci(mtp);
+            efp.getTabelaPrimerci().setModel(mtp);
             return true;
         } else {
             return false;

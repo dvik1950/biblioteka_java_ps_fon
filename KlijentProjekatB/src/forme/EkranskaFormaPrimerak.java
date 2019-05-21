@@ -576,5 +576,14 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
         this.tabelaKnjige = tabelaKnjige;
     }
 
+    public javax.swing.JTable getTabelaPrimerci() {
+        return tabelaPrimerci;
+    }
+
+    public void setTabelaPrimerci(javax.swing.JTable tabelaPrimerci) {
+        this.tabelaPrimerci = tabelaPrimerci;
+    }
+
+    
     
 }
