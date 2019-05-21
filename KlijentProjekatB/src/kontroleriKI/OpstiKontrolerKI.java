@@ -99,6 +99,7 @@ public class OpstiKontrolerKI {
         ArrayList<Knjiga> listaKnjiga = (ArrayList<Knjiga>) posaljiZahtev(Operacije.NADJI_KNJIGE, kriterijum);
         ModelTabeleKnjige mtk = new ModelTabeleKnjige();
         mtk.setLista(listaKnjiga);
+        efp.getModelTabeleKnjige().setLista(listaKnjiga);
         efp.getTabelaKnjige().setModel(mtk);
     }
 
