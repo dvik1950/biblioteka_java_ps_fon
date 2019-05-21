@@ -64,6 +64,7 @@ public class OpstiKontrolerKI {
                 Clan noviClan = (Clan) posaljiZahtev(Operacije.KREIRAJ_CLANA, null);
                 HashMap<String, String> hashMapNovogClana = new HashMap<>();
                 hashMapNovogClana.put("sifra", noviClan.getSifraClana());
+                return hashMapNovogClana;
             default:
                 throw new Exception("Pokušavate da kreirate nepoznat objekta.");
         }
@@ -142,7 +143,7 @@ public class OpstiKontrolerKI {
         clan.setJMBG(podaciOClanu.get("jmbg"));
         clan.setTelefon(podaciOClanu.get("telefon"));
         clan.setEmail(podaciOClanu.get("email"));
-        return (boolean) posaljiZahtev(Operacije.ZAPAMTI_NOVOG_CLANA, clan);
+        return (boolean) posaljiZahtev(Operacije.ZAPAMTI_CLANA, clan);
     }
 
     public ArrayList<Clan> nadjiClanove(HashMap<String, String> kriterijum) throws Exception {
@@ -165,7 +166,7 @@ public class OpstiKontrolerKI {
         HashMap<String, String> hashMapClana = new HashMap<>();
         Clan clan = new Clan();
         clan.setSifraClana(sifraClana);
-        clan = (Clan) posaljiZahtev(Operacije.NADJI_CLANA, sifraClana);
+        clan = (Clan) posaljiZahtev(Operacije.NADJI_CLANA, clan);
         hashMapClana.put("sifra", clan.getSifraClana());
         hashMapClana.put("jmbg", clan.getJMBG());
         hashMapClana.put("ime", clan.getIme());

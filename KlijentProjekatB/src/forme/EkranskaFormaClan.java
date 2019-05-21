@@ -22,7 +22,6 @@ import kontroleriKI.OpstiKontrolerKI;
 public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     private EkranskaFormaClanovi parentForma;
-//    private Clan clan;
     private String sifraClana;
     private String JMBG;
     private String ime;
@@ -244,15 +243,6 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 //    public String getStatus() {
 //        return status;
 //    }
-    public void setStatus(String status) throws Exception {
-        this.status = status;
-        if (status.equals("dodaj")) {
-            kreirajClana();
-        }
-        postaviImeForme();
-        zakljucajSifruClana();
-    }
-
 //    private void sacuvajClana() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
@@ -273,6 +263,7 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     private void kreirajClana() throws Exception {
         this.sifraClana = OpstiKontrolerKI.vratiInstancu().kreirajObjekat("clan").get("sifra");
+        txtSifraClana.setText(sifraClana);
     }
 
     @Override
@@ -440,6 +431,15 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setStatus(String status) throws Exception {
+        this.status = status;
+        if (status.equals("dodaj")) {
+            kreirajClana();
+        }
+        postaviImeForme();
+        zakljucajSifruClana();
     }
 
     // neimplementirane metode
