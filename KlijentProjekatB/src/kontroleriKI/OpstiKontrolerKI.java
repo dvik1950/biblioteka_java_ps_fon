@@ -80,17 +80,19 @@ public class OpstiKontrolerKI {
                 if (posaljiZahtev(Operacije.ZAPAMTI_KNJIGU, knjigaZaPamcenje) != null) {
                     return true;
                 }
+                break;
             case "primerak":
                 Primerak primerakZaPamcenje = new Primerak();
                 primerakZaPamcenje.setISBN(objekatZaPamcenje.get("isbn"));
                 primerakZaPamcenje.setIzdavac(objekatZaPamcenje.get("izdavac"));
-                primerakZaPamcenje.setSifraPrimerka(objekatZaPamcenje.get("sifra"));
                 if (posaljiZahtev(Operacije.ZAPAMTI_PRIMERAK, primerakZaPamcenje) != null) {
                     return true;
                 }
+                break;
             default:
                 throw new Exception("Pokušavate da zapamtite nepoznat objekta.");
         }
+        return false;
     }
 
     public void nadjiKnjige(HashMap kriterijum, EkranskaFormaPrimerak efp) throws Exception {
@@ -100,8 +102,16 @@ public class OpstiKontrolerKI {
         efp.setModelTabeleKnjige(mtk);
     }
 
-    public Knjiga nadjiKnjigu(Knjiga k) throws Exception {
-        return (Knjiga) posaljiZahtev(Operacije.NADJI_KNJIGU, k);
+    public HashMap<String, String> nadjiKnjigu(String isbn) throws Exception {
+        Knjiga knjiga = new Knjiga();
+        knjiga.setISBN(isbn);
+        knjiga = (Knjiga) posaljiZahtev(Operacije.NADJI_KNJIGU, knjiga);
+        HashMap<String, String> hashMapKnjige = new HashMap<>();
+        hashMapKnjige.put("isbn", knjiga.getISBN());
+        hashMapKnjige.put("naziv", knjiga.getNazivKnjige());
+        hashMapKnjige.put("autor", knjiga.getAutor());
+        hashMapKnjige.put("godina", Integer.toString(knjiga.getGodinaObjavljivanja()));
+        return hashMapKnjige;
     }
 
     public boolean nadjiPrimerke(String isbn, EkranskaFormaPrimerak efp) throws Exception {

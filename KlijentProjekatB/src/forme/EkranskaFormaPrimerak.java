@@ -351,9 +351,9 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
 
     private void btnPrikaziSvePodatkeOKnjiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrikaziSvePodatkeOKnjiziActionPerformed
         if (tabelaKnjige.getSelectedRow() != -1) {
-            Knjiga k = modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow());
+            String isbn = modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()).getISBN();
             try {
-                nadjiSvePodatkeOKnjizi(k);
+                nadjiSvePodatkeOKnjizi(isbn);
             } catch (Exception ex) {
                 Logger.getLogger(EkranskaFormaPrimerak.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -445,15 +445,16 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
     @Override
     HashMap<String, String> kreirajObjekat() {
         try {
-            Primerak p = new Primerak();
-            p.setISBN(modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()).getISBN());
-            p.setIzdavac(txtIzdavac.getText());
-            Primerak zapamceniPrimerak = (Primerak) OpstiKontrolerKI.vratiInstancu().zapamtiObjekat(p);
-            if (zapamceniPrimerak != null) {
-                JOptionPane.showMessageDialog(this, "Sistem je zapamtio primerak. \n ISBN: " + zapamceniPrimerak.getISBN()
-                        + "\n Izdavac: " + zapamceniPrimerak.getIzdavac());
+                HashMap<String, String> primerak = new HashMap<>();
+                primerak.put("tip", "primerak");
+                primerak.put("isbn", modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()).getISBN());
+                primerak.put("izdavac", txtIzdavac.getText());
+               boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiObjekat(primerak);
+            if (uspesno) {
+                JOptionPane.showMessageDialog(this, "Sistem je zapamtio primerak. \n ISBN: " + primerak.get("isbn")
+                        + "\n Izdavac: " + primerak.get("izdavac"));
                 txtIzdavac.setText("");
-                return zapamceniPrimerak;
+                return primerak;
             } else {
                 JOptionPane.showMessageDialog(this, "Sistem ne moze da zapamti primerak.");
                 return null;
@@ -533,12 +534,12 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
         JOptionPane.showMessageDialog(this, "Sistem je našao sve knjige po zadatoj vrednosti.");
     }
 
-    private void nadjiSvePodatkeOKnjizi(Knjiga k) throws Exception {
-        Knjiga celaKnjiga = OpstiKontrolerKI.vratiInstancu().nadjiKnjigu(k);
-        JOptionPane.showMessageDialog(this, "Sistem je pronašao sve podatke o izabranoj knjizi.\n Naziv knjige: " + celaKnjiga.getNazivKnjige() + "\n"
-                + "Autor knjige: " + celaKnjiga.getAutor() + "\n"
-                + "ISBN knjige: " + celaKnjiga.getISBN() + "\n"
-                + "Godina objavljivanja knjige: " + celaKnjiga.getGodinaObjavljivanja() + "\n");
+    private void nadjiSvePodatkeOKnjizi(String isbn) throws Exception {
+        HashMap<String, String> hashMapKnjige = OpstiKontrolerKI.vratiInstancu().nadjiKnjigu(isbn);
+        JOptionPane.showMessageDialog(this, "Sistem je pronašao sve podatke o izabranoj knjizi.\n Naziv knjige: " + hashMapKnjige.get("naziv") + "\n"
+                + "Autor knjige: " + hashMapKnjige.get("autor") + "\n"
+                + "ISBN knjige: " + hashMapKnjige.get("isbn") + "\n"
+                + "Godina objavljivanja knjige: " + hashMapKnjige.get("godina") + "\n");
     }
 
 //    private void zapamtiPrimerak() throws Exception {
