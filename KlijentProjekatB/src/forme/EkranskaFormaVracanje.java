@@ -18,21 +18,12 @@ import modeli.ModelTabeleClanovi;
 import modeli.ModelTabelePrimerci;
 import niti.OsvezivacFormeVracanje;
 
-/**
- *
- * @author FON
- */
 public class EkranskaFormaVracanje extends OpstaEkranskaForma {
 
-    ModelTabeleClanovi modelTabeleClanovi = new ModelTabeleClanovi();
-    ModelTabelePrimerci modelTabelePrimerci = new ModelTabelePrimerci();
+    private ModelTabeleClanovi modelTabeleClanovi = new ModelTabeleClanovi();
+    private ModelTabelePrimerci modelTabelePrimerci = new ModelTabelePrimerci();
     OsvezivacFormeVracanje ofv;
-//    ArrayList<Primerak> listaPrimeraka;
-//    ArrayList<Clan> listaClanova;
 
-    /**
-     * Creates new form EkranskaFormaVraćanje
-     */
     public EkranskaFormaVracanje() {
         initComponents();
         postaviImeForme();
@@ -64,7 +55,7 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
         tabelaPrimerci = new javax.swing.JTable();
         btnVrati = new javax.swing.JButton();
         btnNazadNaGlavnuFormu = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnNovaPretraga = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,10 +186,10 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
             }
         });
 
-        jButton1.setText("Nova pretraga");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnNovaPretraga.setText("Nova pretraga");
+        btnNovaPretraga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnNovaPretragaActionPerformed(evt);
             }
         });
 
@@ -213,7 +204,7 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnNazadNaGlavnuFormu)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnNovaPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,7 +212,7 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNazadNaGlavnuFormu)
-                    .addComponent(jButton1))
+                    .addComponent(btnNovaPretraga))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -246,23 +237,17 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     }//GEN-LAST:event_tabelaClanoviMouseClicked
 
     private void txtImeClanaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImeClanaKeyPressed
-//        ofv = new OsvezivacFormeVracanje();
-//        ofv.setEfv(this);
-//        ofv.start();
     }//GEN-LAST:event_txtImeClanaKeyPressed
 
     private void txtPrezimeClanaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrezimeClanaKeyPressed
-//        ofv = new OsvezivacFormeVracanje();
-//        ofv.setEfv(this);
-//        ofv.start();
     }//GEN-LAST:event_txtPrezimeClanaKeyPressed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnNovaPretragaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaPretragaActionPerformed
         ofv = new OsvezivacFormeVracanje();
         ofv.setEfv(this);
         ofv.start();
         modelTabelePrimerci.setLista(new ArrayList<>());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnNovaPretragaActionPerformed
 
     private void btnVratiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVratiActionPerformed
         if(tabelaPrimerci.getSelectedRow() != -1){
@@ -340,8 +325,8 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNazadNaGlavnuFormu;
+    private javax.swing.JButton btnNovaPretraga;
     private javax.swing.JButton btnVrati;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -356,12 +341,11 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     private javax.swing.JTextField txtPrezimeClana;
     // End of variables declaration//GEN-END:variables
 
-    public void osveziClanove() throws Exception {
+    public void osveziTabeluClanova() throws Exception {
         HashMap<String, String> kriterijum = new HashMap<>();
         kriterijum.put("ime", txtImeClana.getText());
         kriterijum.put("prezime", txtPrezimeClana.getText());
-        ArrayList<Clan> listaClanova = OpstiKontrolerKI.vratiInstancu().nadjiClanove(kriterijum);
-        modelTabeleClanovi.setLista(listaClanova);
+        OpstiKontrolerKI.vratiInstancu().osveziTabeluClanova(kriterijum, this);
     }
 
     private void pokreniOsvezivac() {
@@ -384,5 +368,39 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
             JOptionPane.showMessageDialog(this, "Neuspešno evidentiranje vraćanja primerka");
         }
     }
+
+    public ModelTabeleClanovi getModelTabeleClanovi() {
+        return modelTabeleClanovi;
+    }
+
+    public void setModelTabeleClanovi(ModelTabeleClanovi modelTabeleClanovi) {
+        this.modelTabeleClanovi = modelTabeleClanovi;
+    }
+
+    public ModelTabelePrimerci getModelTabelePrimerci() {
+        return modelTabelePrimerci;
+    }
+
+    public void setModelTabelePrimerci(ModelTabelePrimerci modelTabelePrimerci) {
+        this.modelTabelePrimerci = modelTabelePrimerci;
+    }
+
+    public javax.swing.JTable getTabelaClanovi() {
+        return tabelaClanovi;
+    }
+
+    public void setTabelaClanovi(javax.swing.JTable tabelaClanovi) {
+        this.tabelaClanovi = tabelaClanovi;
+    }
+
+    public javax.swing.JTable getTabelaPrimerci() {
+        return tabelaPrimerci;
+    }
+
+    public void setTabelaPrimerci(javax.swing.JTable tabelaPrimerci) {
+        this.tabelaPrimerci = tabelaPrimerci;
+    }
+    
+    
 
 }

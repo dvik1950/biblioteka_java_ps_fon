@@ -9,6 +9,7 @@ import domen.Primerak;
 import exception.ServerskiException;
 import forme.EkranskaFormaIznajmljivanje;
 import forme.EkranskaFormaPrimerak;
+import forme.EkranskaFormaVracanje;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -152,6 +153,14 @@ public class OpstiKontrolerKI {
         return (ArrayList<Clan>) posaljiZahtev(Operacije.NADJI_CLANOVE, kriterijum);
     }
 
+    public void osveziTabeluClanova(HashMap<String, String> kriterijum, EkranskaFormaVracanje efv) throws Exception {
+        ArrayList<Clan> listaClanova = (ArrayList<Clan>) posaljiZahtev(Operacije.NADJI_CLANOVE, kriterijum);
+        ModelTabeleClanovi mtc = new ModelTabeleClanovi();
+        mtc.setLista(listaClanova);
+        efv.getTabelaClanovi().setModel(mtc);
+        efv.setModelTabeleClanovi(mtc);
+    }
+    
     public boolean zapamtiClana(HashMap<String, String> podaci) throws Exception {
         Clan clan = new Clan();
         clan.setSifraClana(podaci.get("sifra"));
@@ -282,5 +291,7 @@ public class OpstiKontrolerKI {
 //        }
 //        modelTabelePrimerci.setLista(trenutnaLista);
     }
+
+    
 
 }

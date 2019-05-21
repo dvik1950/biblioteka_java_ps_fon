@@ -22,7 +22,7 @@ public class OsvezivacFormeVracanje extends Thread{
     public void run() {
         while(!stop){
             try {
-                efv.osveziClanove();
+                efv.osveziTabeluClanova();
                 sleep(1000);
             } catch (Exception ex) {
                 Logger.getLogger(OsvezivacFormeVracanje.class.getName()).log(Level.SEVERE, null, ex);
