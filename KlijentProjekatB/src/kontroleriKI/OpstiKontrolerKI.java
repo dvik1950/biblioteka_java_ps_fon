@@ -249,22 +249,38 @@ public class OpstiKontrolerKI {
         ArrayList<Knjiga> listaKnjiga = OpstiKontrolerKI.vratiInstancu().ucitajListuKnjiga();
         ArrayList<Primerak> listaPrimeraka = OpstiKontrolerKI.vratiInstancu().ucitajListuPrimeraka();
         ArrayList<Clan> listaClanova = OpstiKontrolerKI.vratiInstancu().ucitajListuClanova();
-        
+
         ModelTabeleClanovi mtc = new ModelTabeleClanovi();
         mtc.setLista(listaClanova);
         efi.getTabelaClanovi().setModel(mtc);
         efi.setModelTabeleClanovi(mtc);
-        
+
         ModelTabeleKnjige mtk = new ModelTabeleKnjige();
         mtk.setLista(listaKnjiga);
         efi.getTabelaKnjige().setModel(mtk);
         efi.setModelTabeleKnjige(mtk);
-        
+
         ModelTabelePrimerci mtp = new ModelTabelePrimerci();
         mtp.setLista(listaPrimeraka);
         efi.getTabelaPrimerci().setModel(mtp);
         efi.setModelTabeleKnjige(mtk);
-        
+
+    }
+
+    public void postaviPrimerke(String isbn, EkranskaFormaIznajmljivanje efi) throws Exception {
+        ArrayList<Primerak> listaPrimeraka = (ArrayList<Primerak>) posaljiZahtev(Operacije.NADJI_PRIMERKE, isbn);
+        ModelTabelePrimerci mtp = new ModelTabelePrimerci();
+        mtp.setLista(listaPrimeraka);
+        efi.setModelTabelePrimerci(mtp);
+        efi.getTabelaPrimerci().setModel(mtp);
+
+//        ArrayList<Primerak> trenutnaLista = new ArrayList<>();
+//        for (Primerak primerak : listaPrimeraka) {
+//            if (primerak.getISBN().equals(k.getISBN())) {
+//                trenutnaLista.add(primerak);
+//            }
+//        }
+//        modelTabelePrimerci.setLista(trenutnaLista);
     }
 
 }

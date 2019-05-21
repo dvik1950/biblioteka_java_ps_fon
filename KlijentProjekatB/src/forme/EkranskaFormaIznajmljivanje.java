@@ -211,7 +211,11 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
 
     private void tabelaKnjigeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaKnjigeMouseClicked
         if (tabelaKnjige.getSelectedRow() != -1) {
-            postaviPrimerke(modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()));
+            try {
+                postaviPrimerke(modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()).getISBN());
+            } catch (Exception ex) {
+                Logger.getLogger(EkranskaFormaIznajmljivanje.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_tabelaKnjigeMouseClicked
 
@@ -305,14 +309,8 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
     // End of variables declaration//GEN-END:variables
 
 
-    private void postaviPrimerke(Knjiga k) {
-        ArrayList<Primerak> trenutnaLista = new ArrayList<>();
-        for (Primerak primerak : listaPrimeraka) {
-            if (primerak.getISBN().equals(k.getISBN())) {
-                trenutnaLista.add(primerak);
-            }
-        }
-        modelTabelePrimerci.setLista(trenutnaLista);
+    private void postaviPrimerke(String isbn) throws Exception {
+        OpstiKontrolerKI.vratiInstancu().postaviPrimerke(isbn, this);
     }
 
     private void kreirajIznajmljivanje() throws Exception {
