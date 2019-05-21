@@ -358,6 +358,7 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
             if (tabelaKnjige.getSelectedRow() != -1) {
                 try {
                     kreirajObjekat();
+                    modelTabelePrimerci.setLista(new ArrayList<>());
                 } catch (Exception ex) {
                     Logger.getLogger(EkranskaFormaPrimerak.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -445,6 +446,7 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
                 JOptionPane.showMessageDialog(this, "Sistem je zapamtio primerak. \n ISBN: " + primerak.get("isbn")
                         + "\n Izdavac: " + primerak.get("izdavac"));
                 txtIzdavac.setText("");
+                
                 return primerak;
             } else {
                 JOptionPane.showMessageDialog(this, "Sistem ne moze da zapamti primerak.");
