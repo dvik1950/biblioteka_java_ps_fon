@@ -273,7 +273,7 @@ public class OpstiKontrolerKI {
         mtp.setLista(listaPrimeraka);
         efi.setModelTabelePrimerci(mtp);
         efi.getTabelaPrimerci().setModel(mtp);
-
+        
 //        ArrayList<Primerak> trenutnaLista = new ArrayList<>();
 //        for (Primerak primerak : listaPrimeraka) {
 //            if (primerak.getISBN().equals(k.getISBN())) {

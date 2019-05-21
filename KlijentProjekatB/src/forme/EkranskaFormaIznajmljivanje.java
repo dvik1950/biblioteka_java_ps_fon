@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
 import domen.Clan;
@@ -20,20 +15,11 @@ import modeli.ModelTabeleClanovi;
 import modeli.ModelTabeleKnjige;
 import modeli.ModelTabelePrimerci;
 
-/**
- *
- * @author FON
- */
 public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
 
     private ModelTabeleKnjige modelTabeleKnjige = new ModelTabeleKnjige();
     private ModelTabeleClanovi modelTabeleClanovi = new ModelTabeleClanovi();
     private ModelTabelePrimerci modelTabelePrimerci = new ModelTabelePrimerci();
-    
-    
-//    ArrayList<Knjiga> listaKnjiga;
-//    ArrayList<Primerak> listaPrimeraka;
-//    ArrayList<Clan> listaClanova;
 
     /**
      * Creates new form EkranskaFormaIznajmljivanje
@@ -266,10 +252,6 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
         });
     }
 
-    @Override
-    HashMap<String, String> kreirajObjekat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     void postaviImeForme() {
@@ -283,15 +265,6 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
         tabelaPrimerci.setModel(modelTabelePrimerci);
     }
 
-    @Override
-    void popuniTabele() {
-        //
-    }
-
-    @Override
-    void postaviToolTipove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKreirajIznajmljivanje;
@@ -307,7 +280,6 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
     private javax.swing.JTable tabelaKnjige;
     private javax.swing.JTable tabelaPrimerci;
     // End of variables declaration//GEN-END:variables
-
 
     private void postaviPrimerke(String isbn) throws Exception {
         OpstiKontrolerKI.vratiInstancu().postaviPrimerke(isbn, this);
@@ -327,6 +299,7 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
         }
     }
 
+    //setteri i getteri
     public ModelTabeleKnjige getModelTabeleKnjige() {
         return modelTabeleKnjige;
     }
@@ -373,5 +346,21 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
 
     public void setTabelaPrimerci(javax.swing.JTable tabelaPrimerci) {
         this.tabelaPrimerci = tabelaPrimerci;
+    }
+
+    //neimplementirane metode
+    @Override
+    void popuniTabele() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void postaviToolTipove() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     @Override
+    HashMap<String, String> kreirajObjekat() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
