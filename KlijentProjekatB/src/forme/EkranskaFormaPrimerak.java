@@ -529,9 +529,8 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
         if (!txtGodinaObjavljivanja.getText().isEmpty()) {
             kriterijum.put("godina", txtGodinaObjavljivanja.getText());
         }
-        ArrayList<Knjiga> rezultatPretrage = OpstiKontrolerKI.vratiInstancu().nadjiKnjige(kriterijum);
-        modelTabeleKnjige.setLista(rezultatPretrage);
-        JOptionPane.showMessageDialog(this, "Sistem je našao knjige po zadatoj vrednosti.");
+        OpstiKontrolerKI.vratiInstancu().nadjiKnjige(kriterijum, this);
+        JOptionPane.showMessageDialog(this, "Sistem je našao sve knjige po zadatoj vrednosti.");
     }
 
     private void nadjiSvePodatkeOKnjizi(Knjiga k) throws Exception {
@@ -555,9 +554,8 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
 //            JOptionPane.showMessageDialog(this, "Sistem ne moze da zapamti primerak.");
 //        }
 //    }
-
     private void pronadjiPrimerke(String isbn) throws Exception {
-          boolean uspesno = OpstiKontrolerKI.vratiInstancu().nadjiPrimerke(isbn, this);
+        boolean uspesno = OpstiKontrolerKI.vratiInstancu().nadjiPrimerke(isbn, this);
         if (uspesno) {
             JOptionPane.showMessageDialog(this, "Sistem je našao primerke za datu knjigu.");
         } else {

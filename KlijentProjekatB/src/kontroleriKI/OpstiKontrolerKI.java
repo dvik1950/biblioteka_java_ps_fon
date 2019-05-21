@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import komunikacija.KomunikacijaSaServerom;
 import konstante.Operacije;
+import modeli.ModelTabeleKnjige;
 import modeli.ModelTabelePrimerci;
 import transfer.KlijentskiZahtev;
 import transfer.ServerskiOdgovor;
@@ -92,8 +93,11 @@ public class OpstiKontrolerKI {
         }
     }
 
-    public ArrayList<Knjiga> nadjiKnjige(HashMap kriterijum) throws Exception {
-        return (ArrayList<Knjiga>) posaljiZahtev(Operacije.NADJI_KNJIGE, kriterijum);
+    public void nadjiKnjige(HashMap kriterijum, EkranskaFormaPrimerak efp) throws Exception {
+        ArrayList<Knjiga> listaKnjiga = (ArrayList<Knjiga>) posaljiZahtev(Operacije.NADJI_KNJIGE, kriterijum);
+        ModelTabeleKnjige mtk = new ModelTabeleKnjige();
+        mtk.setLista(listaKnjiga);
+        efp.setModelTabeleKnjige(mtk);
     }
 
     public Knjiga nadjiKnjigu(Knjiga k) throws Exception {
