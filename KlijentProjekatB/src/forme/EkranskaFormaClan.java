@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
-import domen.Clan;
-import domen.Knjiga;
-import domen.OpstiDomenskiObjekat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -15,10 +7,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import kontroleriKI.OpstiKontrolerKI;
 
-/**
- *
- * @author FON
- */
 public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     private EkranskaFormaClanovi parentForma;
@@ -240,12 +228,6 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 
-//    public String getStatus() {
-//        return status;
-//    }
-//    private void sacuvajClana() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     private void zapamtiNovogClana() throws Exception {
         boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiClana(pokupiPodatkeIzPolja());
         if (uspesno) {
@@ -268,7 +250,7 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     @Override
     HashMap<String, String> kreirajObjekat() { //snima clana u bazu
-        throw new UnsupportedOperationException("greska");
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
     }
 
     @Override
@@ -445,17 +427,17 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
     // neimplementirane metode
     @Override
     void postaviToolTipove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     void postaviModeleTabela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     void popuniTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
