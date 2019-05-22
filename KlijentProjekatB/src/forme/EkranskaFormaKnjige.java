@@ -1,6 +1,5 @@
 package forme;
 
-import domen.Knjiga;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -253,26 +252,10 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
     private javax.swing.JTextField txtNaziv;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    void postaviModeleTabela() {
-        //
-    }
-
-    @Override
-    void popuniTabele() {
-        //
-    }
 
     @Override
     void postaviToolTipove() {
         labelaNapomena.setToolTipText("Naziv i autor knjige ne smeju biti prazni niti podrazumevani tekst. ISBN mora biti 10 ili 13 cifara. Godina objavljivanja mora biti broj.");
-    }
-
-    private boolean ispravnoUnetiPodaci() {
-        if (ispravnoUnetNaziv() && ispravnoUnetAutor() && ispravnoUnetaGodina() && ispravnoUnetISBN()) {
-            return true;
-        }
-        return false;
     }
 
     private void zapamtiKnjigu() throws Exception {
@@ -284,7 +267,7 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
                     + "\n Godina objavljivanja: " + hashMapKnjige.get("godina")
                     + "\n ISBN: " + hashMapKnjige.get("isbn"));
             isprazniPolja();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Sistem ne može da zapamti knjigu.");
         }
     }
@@ -302,7 +285,7 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
         hashMapKnjige.put("isbn", txtISBN.getText());
         hashMapKnjige.put("naziv", txtNaziv.getText());
         hashMapKnjige.put("autor", txtAutor.getText());
-        hashMapKnjige.put("godina",txtGodOb.getText());
+        hashMapKnjige.put("godina", txtGodOb.getText());
         return hashMapKnjige;
     }
 
@@ -311,6 +294,18 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
         txtGodOb.setText("");
         txtNaziv.setText("");
         txtISBN.setText("");
+    }
+
+    private void zakljucajPamcenjeKnjige() {
+        btnZapamtiKnjigu.setEnabled(false);
+    }
+
+    //validacije 
+    private boolean ispravnoUnetiPodaci() {
+        if (ispravnoUnetNaziv() && ispravnoUnetAutor() && ispravnoUnetaGodina() && ispravnoUnetISBN()) {
+            return true;
+        }
+        return false;
     }
 
     private boolean ispravnoUnetNaziv() {
@@ -345,8 +340,16 @@ public class EkranskaFormaKnjige extends OpstaEkranskaForma {
         }
         return false;
     }
+    
+    //neimplementirane metode
+    
+    @Override
+    void postaviModeleTabela() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
 
-    private void zakljucajPamcenjeKnjige() {
-        btnZapamtiKnjigu.setEnabled(false);
+    @Override
+    void popuniTabele() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
     }
 }

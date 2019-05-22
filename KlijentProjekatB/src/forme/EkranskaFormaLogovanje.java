@@ -1,11 +1,9 @@
 package forme;
 
-import domen.OpstiDomenskiObjekat;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import kontroleriKI.OpstiKontrolerKI;
-
 
 public class EkranskaFormaLogovanje extends OpstaEkranskaForma {
 
@@ -105,8 +103,8 @@ public class EkranskaFormaLogovanje extends OpstaEkranskaForma {
             JOptionPane.showMessageDialog(this, "Konekcija na server nije uspela", "Greška", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Administrator sa datim korisničkim imenom je već ulogovan.", "Greška", JOptionPane.ERROR_MESSAGE);
-        } 
-       
+        }
+
     }//GEN-LAST:event_btnUlogujSeActionPerformed
 
     /**
@@ -156,50 +154,50 @@ public class EkranskaFormaLogovanje extends OpstaEkranskaForma {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    HashMap<String, String> kreirajObjekat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     void postaviImeForme() {
         this.setTitle("Forma za prijavljivanje administratora");
     }
 
-    @Override
-    void postaviModeleTabela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void popuniTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void postaviToolTipove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    private HashMap<String, String> prijaviAdministratora() throws Exception{
+    private HashMap<String, String> prijaviAdministratora() throws Exception {
         String korisnickoIme = txtKorisnickoIme.getText();
         String korisnickaLozinka = new String(passLozinka.getPassword());
         return OpstiKontrolerKI.vratiInstancu().prijaviAdministratora(korisnickoIme, korisnickaLozinka);
     }
-    
-    private void ulogujAdministratora(HashMap<String, String> prijavljeniAdministratorHash){
-        if(prijavljeniAdministratorHash != null){
+
+    private void ulogujAdministratora(HashMap<String, String> prijavljeniAdministratorHash) {
+        if (prijavljeniAdministratorHash != null) {
             GlavnaEkranskaForma gef = new GlavnaEkranskaForma();
             gef.setUlogovaniAdministrator(OpstiKontrolerKI.vratiInstancu().adminHashUadminObjekat(prijavljeniAdministratorHash));
             gef.setVisible(true);
             dispose();
             JOptionPane.showMessageDialog(gef, "Administrator je uspešno ulogovan");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Administrator nije uneo tačne podatke", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-         private void uspostaviKomunikaciju() throws IOException {
-             OpstiKontrolerKI.vratiInstancu().uspostaviKomunikaciju();
+
+    private void uspostaviKomunikaciju() throws IOException {
+        OpstiKontrolerKI.vratiInstancu().uspostaviKomunikaciju();
     }
-    
+
+    //neimplementirane metode
+    @Override
+    void postaviModeleTabela() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
+
+    @Override
+    void popuniTabele() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
+
+    @Override
+    void postaviToolTipove() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
+
+    @Override
+    HashMap<String, String> kreirajObjekat() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
 }

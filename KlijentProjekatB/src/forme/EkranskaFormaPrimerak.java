@@ -1,8 +1,5 @@
 package forme;
 
-import domen.Knjiga;
-import domen.OpstiDomenskiObjekat;
-import domen.Primerak;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -437,16 +434,16 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
     @Override
     HashMap<String, String> kreirajObjekat() {
         try {
-                HashMap<String, String> primerak = new HashMap<>();
-                primerak.put("tip", "primerak");
-                primerak.put("isbn", modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()).getISBN());
-                primerak.put("izdavac", txtIzdavac.getText());
-               boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiObjekat(primerak);
+            HashMap<String, String> primerak = new HashMap<>();
+            primerak.put("tip", "primerak");
+            primerak.put("isbn", modelTabeleKnjige.getLista().get(tabelaKnjige.getSelectedRow()).getISBN());
+            primerak.put("izdavac", txtIzdavac.getText());
+            boolean uspesno = OpstiKontrolerKI.vratiInstancu().zapamtiObjekat(primerak);
             if (uspesno) {
                 JOptionPane.showMessageDialog(this, "Sistem je zapamtio primerak. \n ISBN: " + primerak.get("isbn")
                         + "\n Izdavac: " + primerak.get("izdavac"));
                 txtIzdavac.setText("");
-                
+
                 return primerak;
             } else {
                 JOptionPane.showMessageDialog(this, "Sistem ne moze da zapamti primerak.");
@@ -462,11 +459,6 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
     void postaviModeleTabela() {
         tabelaKnjige.setModel(modelTabeleKnjige);
         tabelaPrimerci.setModel(modelTabelePrimerci);
-    }
-
-    @Override
-    void popuniTabele() {
-        //
     }
 
     @Override
@@ -503,11 +495,6 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
     private javax.swing.JTextField txtIzdavac;
     private javax.swing.JTextField txtNazivKnjige;
     // End of variables declaration//GEN-END:variables
-
-    private boolean validnaPretraga() {
-        return true;
-        // isbn brojevi, autor itd
-    }
 
     private void pronadjiKnjige() throws Exception {
         HashMap<String, String> kriterijum = new HashMap<>();
@@ -586,6 +573,26 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
         this.tabelaPrimerci = tabelaPrimerci;
     }
 
-    
-    
+    // neimplementirane metode
+    @Override
+    void popuniTabele() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
+
+    // validacije
+    private boolean validnaPretraga() {
+        if (ispravanISBN()) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean ispravanISBN() {
+        String ISBN = txtISBN.getText();
+        if (ISBN.length() == 10 || ISBN.length() == 13) {
+            return true;
+        }
+        return false;
+    }
+
 }
