@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package db;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
@@ -15,9 +10,7 @@ import domen.Primerak;
 import exception.ServerskiException;
 
 import java.io.IOException;
-import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,7 +52,6 @@ public class DBBroker {
     public void raskiniKonekciju() throws ServerskiException {
         try {
             konekcija.close();
-
         } catch (SQLException ex) {
             throw new ServerskiException("Raskidanje konekcije neuspesno!");
         }
@@ -107,36 +99,11 @@ public class DBBroker {
             ResultSet rs = s.executeQuery(upit);
             List<OpstiDomenskiObjekat> listaObjekata = o.RSuTabelu(rs);
             s.close();
-
             return listaObjekata;
         } catch (SQLException ex) {
             throw new ServerskiException("Server ne moze da prikaze podatke o " + o.getClass().getName() + ".");
         }
     }
-//
-//    public OpstiDomenskiObjekat sacuvajObjekat(OpstiDomenskiObjekat o) throws ServerskiException {
-//        try {
-//            String upit = String.format("INSERT INTO %s VALUES (%s)", o.vratiImeTabele(), o.vratiParametre());
-//            Statement s = konekcija.createStatement();
-//            s.executeUpdate(upit);
-////            ResultSet rs = s.executeQuery("SELECT LAST_INSERT_ID() as poslednjiID from " + o.vratiImeTabele());
-////            while (rs.next()) {
-////                String lastid = rs.getString("poslednjiID");
-////                o.postaviVrednostPK(lastid);
-////                break;
-////            }
-//            s.close();
-//            return o;
-////        } catch (MySQLIntegrityConstraintViolationException ex) {
-////            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
-////            if (o.vratiImeTabele().equals("knjiga")) {
-////                throw new ServerskiException("Već postoji knjiga sa unetim IDem!"); ///////!!!!!!!!!!!!!!!!!!!!!!!!!
-////            }
-//        } catch (SQLException ex) {
-//            throw new ServerskiException("Greska kod citanja iz properties fajla!");
-//        }
-//    }
-//
 
     public OpstiDomenskiObjekat vratiObjekatPoKljucu(OpstiDomenskiObjekat o, String ID) throws ServerskiException {
         String upit = "SELECT * FROM " + o.vratiImeTabele() + " WHERE " + o.vratiPK() + "=" + "'" + ID + "'";
@@ -151,7 +118,6 @@ public class DBBroker {
             throw new ServerskiException(ex.getMessage());
         }
     }
-//
 
     public OpstiDomenskiObjekat izmeniObjekat(OpstiDomenskiObjekat o) {
         String upit = String.format("UPDATE %s SET %s WHERE %s = '%s'", o.vratiImeTabele(), o.vratiUpdate(), o.vratiPK(), o.vratiVrednostPK());
@@ -164,7 +130,6 @@ public class DBBroker {
         } catch (SQLException ex) {
             Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return null;
     }
 
@@ -174,7 +139,6 @@ public class DBBroker {
             Statement s = konekcija.createStatement();
             System.out.println(upit);
             s.executeUpdate(upit);
-//            potvrdiTransakciju();
             s.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,39 +146,6 @@ public class DBBroker {
         }
         return o;
     }
-//
-//    public ArrayList<Knjiga> pretraziKnjige(String[] pretraga) throws ServerskiException {
-//        ArrayList<Knjiga> listaKnjiga = new ArrayList<>();
-//        try {
-//            String upit;
-//            String kriterijum = pretraga[0];
-//            String vrednost = pretraga[1];
-//
-//            if (kriterijum.equals("ISBN")) {
-//                upit = String.format("SELECT * FROM knjiga WHERE ISBN = '%s'", vrednost);
-//            } else if (kriterijum.equals("Naziv knjige")) {
-//                upit = "SELECT * FROM knjiga WHERE NazivKnjige LIKE '%" + vrednost + "%'";
-//            } else if (kriterijum.equals("Autor")) {
-//                upit = "SELECT * FROM knjiga WHERE Autor LIKE '%" + vrednost + "%'";
-//            } else {
-//                upit = String.format("SELECT * FROM knjiga WHERE GodinaObjavljivanja = %s", vrednost);
-//            }
-//
-//            Statement s = konekcija.createStatement();
-//            ResultSet rs = s.executeQuery(upit);
-//            ArrayList<OpstiDomenskiObjekat> lista = (ArrayList<OpstiDomenskiObjekat>) new Knjiga().RSuTabelu(rs);
-//
-//            for (OpstiDomenskiObjekat opstiDomenskiObjekat : lista) {
-//                listaKnjiga.add((Knjiga) opstiDomenskiObjekat);
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
-//            throw new ServerskiException(ex.getMessage());
-//        }
-//        return listaKnjiga;
-//    }
-//
 
     public ArrayList<Primerak> nadjiPrimerke(String isbn) throws ServerskiException {
         ArrayList<Primerak> listaPrimeraka = new ArrayList<>();
@@ -233,37 +164,6 @@ public class DBBroker {
         }
         return listaPrimeraka;
     }
-//
-//    public ArrayList<Clan> pretraziClanove(String[] pretraga) throws ServerskiException {
-//        ArrayList<Clan> listaClanova = new ArrayList<>();
-//        try {
-//            String upit;
-//            String kriterijum = pretraga[0];
-//            String vrednost = pretraga[1];
-//            if (kriterijum.equals("Sifra clana")) {
-//                upit = String.format("SELECT * FROM clan WHERE SifraClana = '%s'", vrednost);
-//            } else if (kriterijum.equals("Ime")) {
-//                upit = "SELECT * FROM clan WHERE Ime LIKE '%" + vrednost + "%'";
-//            } else if (kriterijum.equals("Prezime")) {
-//                upit = "SELECT * FROM clan WHERE Prezime LIKE '%" + vrednost + "%'";
-//            } else {
-//                upit = String.format("SELECT * FROM clan WHERE JMBG = %s", vrednost);
-//            }
-//
-//            Statement s = konekcija.createStatement();
-//            ResultSet rs = s.executeQuery(upit);
-//            ArrayList<OpstiDomenskiObjekat> lista = (ArrayList<OpstiDomenskiObjekat>) new Clan().RSuTabelu(rs);
-//
-//            for (OpstiDomenskiObjekat opstiDomenskiObjekat : lista) {
-//                listaClanova.add((Clan) opstiDomenskiObjekat);
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
-//            throw new ServerskiException(ex.getMessage());
-//        }
-//        return listaClanova;
-//    }
 
     public OpstiDomenskiObjekat sacuvajObjekat(OpstiDomenskiObjekat o) throws ServerskiException {
         try {

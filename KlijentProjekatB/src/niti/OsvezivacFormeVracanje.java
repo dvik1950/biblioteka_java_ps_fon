@@ -4,14 +4,14 @@ import forme.EkranskaFormaVracanje;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class OsvezivacFormeVracanje extends Thread{
+public class OsvezivacFormeVracanje extends Thread {
 
     private EkranskaFormaVracanje efv;
     private boolean stop = false;
-    
+
     @Override
     public void run() {
-        while(!stop){
+        while (!stop) {
             try {
                 efv.osveziTabeluClanova();
                 sleep(1000);
@@ -36,7 +36,5 @@ public class OsvezivacFormeVracanje extends Thread{
     public void setStop(boolean stop) {
         this.stop = stop;
     }
-    
-    
-    
+
 }
