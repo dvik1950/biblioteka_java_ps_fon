@@ -4,7 +4,6 @@ import domen.Administrator;
 import domen.Clan;
 import domen.Iznajmljivanje;
 import domen.Knjiga;
-import domen.OpstiDomenskiObjekat;
 import domen.Primerak;
 import exception.ServerskiException;
 import java.util.ArrayList;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package so.pomocne;
 
 
@@ -13,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import so.OpstaSistemskaOperacija;
 
-/**
- *
- * @author FON
- */
 public class SOUcitajListuKorisnika extends OpstaSistemskaOperacija{
 
     private List<Administrator> listaKorisnika = new ArrayList<>();
@@ -33,6 +24,5 @@ public class SOUcitajListuKorisnika extends OpstaSistemskaOperacija{
     public List<Administrator> getListaKorisnika() {
         return listaKorisnika;
     }
-    
     
 }

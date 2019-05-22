@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package server;
 
 import domen.Administrator;
@@ -26,10 +21,6 @@ import kontroler.Kontroler;
 import transfer.KlijentskiZahtev;
 import transfer.ServerskiOdgovor;
 
-/**
- *
- * @author FON
- */
 public class ObradaKlijentskihZahtevaNit extends Thread {
 
     private Socket socket;
@@ -44,9 +35,7 @@ public class ObradaKlijentskihZahtevaNit extends Thread {
 
     @Override
     public void run() {
-
         try {
-
             in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
             while (true) {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package so;
 
 import domen.Knjiga;
@@ -10,10 +5,6 @@ import domen.Primerak;
 import exception.ServerskiException;
 import java.util.ArrayList;
 
-/**
- *
- * @author FON
- */
 public class SONadjiPrimerke extends OpstaSistemskaOperacija{
 
     private String ISBN;
@@ -23,7 +14,6 @@ public class SONadjiPrimerke extends OpstaSistemskaOperacija{
     protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
          primerci = dbb.nadjiPrimerke(ISBN);
     }
-
 
     public ArrayList<Primerak> getPrimerci() {
         return primerci;
@@ -40,7 +30,5 @@ public class SONadjiPrimerke extends OpstaSistemskaOperacija{
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
-    
-    
     
 }

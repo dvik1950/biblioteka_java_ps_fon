@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package so;
 
 import domen.Knjiga;
 import exception.ServerskiException;
 
-/**
- *
- * @author FON
- */
 public class SONadjiKnjigu extends OpstaSistemskaOperacija{
 
     private Knjiga parametar;
@@ -37,6 +28,5 @@ public class SONadjiKnjigu extends OpstaSistemskaOperacija{
     public void setKnjiga(Knjiga knjiga) {
         this.knjiga = knjiga;
     }
-    
     
 }

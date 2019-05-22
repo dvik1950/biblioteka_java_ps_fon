@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package so;
 
 import domen.Iznajmljivanje;
 import exception.ServerskiException;
 import java.util.Date;
 
-/**
- *
- * @author FON
- */
 public class SOZapamtiIznajmljivanje extends OpstaSistemskaOperacija{
 
     private Iznajmljivanje iznajmljivanje;
@@ -42,6 +33,5 @@ public class SOZapamtiIznajmljivanje extends OpstaSistemskaOperacija{
     public void setUspesno(boolean uspesno) {
         this.uspesno = uspesno;
     }
-    
     
 }
