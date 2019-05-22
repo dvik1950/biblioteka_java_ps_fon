@@ -345,16 +345,16 @@ public class EkranskaFormaIznajmljivanje extends OpstaEkranskaForma {
     //neimplementirane metode
     @Override
     void popuniTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     void postaviToolTipove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
     }
     
      @Override
     HashMap<String, String> kreirajObjekat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
     }
 }
