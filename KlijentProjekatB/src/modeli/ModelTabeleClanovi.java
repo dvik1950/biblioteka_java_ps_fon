@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modeli;
 
 import domen.Clan;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author FON
- */
 public class ModelTabeleClanovi extends AbstractTableModel{
 
     private ArrayList<Clan> lista = new ArrayList<>();
