@@ -1,6 +1,5 @@
 package forme;
 
-import domen.OpstiDomenskiObjekat;
 import java.util.HashMap;
 
 abstract class OpstaEkranskaForma extends javax.swing.JFrame {
@@ -13,18 +12,15 @@ abstract class OpstaEkranskaForma extends javax.swing.JFrame {
 
      abstract HashMap<String, String> kreirajObjekat();
      
-     
      abstract void postaviImeForme();
      abstract void postaviModeleTabela();
      abstract void popuniTabele();
      abstract void postaviToolTipove();
      
-     
      public void nazadNaGlavnuFormu(){
          dispose();
          glavna.setVisible(true);
      }
-     
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

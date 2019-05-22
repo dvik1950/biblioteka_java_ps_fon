@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
 import domen.Administrator;
@@ -17,10 +12,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import kontroleriKI.OpstiKontrolerKI;
 
-/**
- *
- * @author FON
- */
 public class GlavnaEkranskaForma extends OpstaEkranskaForma {
 
     private Administrator ulogovaniAdministrator;
@@ -248,28 +239,8 @@ public class GlavnaEkranskaForma extends OpstaEkranskaForma {
     }
 
     @Override
-     HashMap<String, String> kreirajObjekat()  {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     void postaviImeForme() {
         this.setTitle("Glavna forma");
-    }
-
-    @Override
-    void postaviModeleTabela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void popuniTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void postaviToolTipove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void otvoriFormu(OpstiDomenskiObjekat odo) throws Exception {
@@ -308,4 +279,24 @@ public class GlavnaEkranskaForma extends OpstaEkranskaForma {
         }
     }
 
+    //neimplementirane metode
+    @Override
+    void postaviModeleTabela() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
+
+    @Override
+    void popuniTabele() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
+
+    @Override
+    void postaviToolTipove() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
+    
+      @Override
+    HashMap<String, String> kreirajObjekat() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

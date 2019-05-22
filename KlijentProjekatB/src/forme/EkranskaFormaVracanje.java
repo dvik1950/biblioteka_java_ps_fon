@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
-import domen.Clan;
-import domen.OpstiDomenskiObjekat;
-import domen.Primerak;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -22,7 +14,7 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
 
     private ModelTabeleClanovi modelTabeleClanovi = new ModelTabeleClanovi();
     private ModelTabelePrimerci modelTabelePrimerci = new ModelTabelePrimerci();
-    OsvezivacFormeVracanje ofv;
+    private OsvezivacFormeVracanje ofv;
 
     public EkranskaFormaVracanje() {
         initComponents();
@@ -250,13 +242,13 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     }//GEN-LAST:event_btnNovaPretragaActionPerformed
 
     private void btnVratiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVratiActionPerformed
-        if(tabelaPrimerci.getSelectedRow() != -1){
+        if (tabelaPrimerci.getSelectedRow() != -1) {
             try {
                 vratiPrimerak(modelTabelePrimerci.getLista().get(tabelaPrimerci.getSelectedRow()).getSifraPrimerka());
             } catch (Exception ex) {
                 Logger.getLogger(EkranskaFormaVracanje.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Prvo odaberite primerak koji je vraćen.");
         }
     }//GEN-LAST:event_btnVratiActionPerformed
@@ -298,11 +290,6 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     }
 
     @Override
-     HashMap<String, String> kreirajObjekat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     void postaviImeForme() {
         this.setTitle("Vraćanje primerka knjige");
     }
@@ -311,11 +298,6 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     void postaviModeleTabela() {
         tabelaClanovi.setModel(modelTabeleClanovi);
         tabelaPrimerci.setModel(modelTabelePrimerci);
-    }
-
-    @Override
-    void popuniTabele() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -361,9 +343,9 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     private void vratiPrimerak(String sifraPrimerka) throws Exception {
         boolean uspesno;
         uspesno = OpstiKontrolerKI.vratiInstancu().vratiPrimerak(sifraPrimerka);
-        if(uspesno){
+        if (uspesno) {
             JOptionPane.showMessageDialog(this, "Uspešno evidentirano vraćanje primerka");
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Neuspešno evidentiranje vraćanja primerka");
         }
     }
@@ -399,7 +381,15 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     public void setTabelaPrimerci(javax.swing.JTable tabelaPrimerci) {
         this.tabelaPrimerci = tabelaPrimerci;
     }
-    
-    
 
+    //neimplementirane
+    @Override
+    void popuniTabele() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
+    }
+    
+    @Override
+    HashMap<String, String> kreirajObjekat() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
