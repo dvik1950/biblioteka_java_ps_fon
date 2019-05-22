@@ -8,6 +8,7 @@ package db;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import domen.Administrator;
 import domen.Clan;
+import domen.Iznajmljivanje;
 import domen.Knjiga;
 import domen.OpstiDomenskiObjekat;
 import domen.Primerak;
@@ -267,6 +268,7 @@ public class DBBroker {
     public OpstiDomenskiObjekat sacuvajObjekat(OpstiDomenskiObjekat o) throws ServerskiException {
         try {
             String upit = String.format("INSERT INTO %s VALUES (%s)", o.vratiImeTabele(), o.vratiParametre());
+            System.out.println(upit);
             Statement s = konekcija.createStatement();
             s.executeUpdate(upit);
             s.close();
@@ -376,4 +378,46 @@ public class DBBroker {
             return false;
         }
     }
+
+    public ArrayList<Primerak> ucitajListuPrimeraka(String isbn) throws ServerskiException {
+        ArrayList<Primerak> listaPrimeraka = new ArrayList<>();
+        try {
+            String upit;
+            if (isbn != null) {
+                upit = "SELECT * FROM primerak p WHERE p.SifraPrimerka "
+                        + "NOT IN (SELECT SifraPrimerka FROM iznajmljivanje WHERE iznajmljivanje.DatumVracanja IS NULL)"
+                        + " AND p.ISBN = '" + isbn + "'";
+            } else {
+                upit = "SELECT * FROM primerak p WHERE p.SifraPrimerka "
+                        + "NOT IN (SELECT SifraPrimerka FROM iznajmljivanje WHERE iznajmljivanje.DatumVracanja IS NULL)";
+            }
+            Statement s = konekcija.createStatement();
+            ResultSet rs = s.executeQuery(upit);
+            List<OpstiDomenskiObjekat> listaObjekata = new Primerak().RSuTabelu(rs);
+            for (OpstiDomenskiObjekat opstiDomenskiObjekat : listaObjekata) {
+                Primerak p = (Primerak) opstiDomenskiObjekat;
+                listaPrimeraka.add(p);
+            }
+            s.close();
+        } catch (SQLException ex) {
+            throw new ServerskiException("Server ne moze da pronadje primerke");
+        }
+        return listaPrimeraka;
+    }
+    
+        public OpstiDomenskiObjekat sacuvajIznajmljivanje(Iznajmljivanje i) throws ServerskiException {
+        try {
+            String upit = String.format("INSERT INTO iznajmljivanje(SifraIznajmljivanja, SifraPrimerka, SifraClana, SifraAdmina, DatumIznajmljivanja) VALUES (%s)", i.vratiParametre());
+            System.out.println(upit);
+            Statement s = konekcija.createStatement();
+            s.executeUpdate(upit);
+            s.close();
+            return i;
+        } catch (MySQLIntegrityConstraintViolationException ex) {
+            throw new ServerskiException("Neispravno uneti podaci, potencijalno narusavanje integriteta baze podataka.");
+        } catch (SQLException ex) {
+            throw new ServerskiException("Greska u SQL upitu.");
+        }
+    }
+    
 }

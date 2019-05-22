@@ -143,8 +143,9 @@ public class Kontroler {
         return soulk.getKnjige();
     }
 
-    public ArrayList<Primerak> ucitajListuPrimeraka() throws ServerskiException {
+    public ArrayList<Primerak> ucitajListuPrimeraka(String isbn) throws ServerskiException {
         SOUcitajListuPrimeraka soulp = new SOUcitajListuPrimeraka();
+        soulp.setIsbn(isbn);
         soulp.izvrsiOperaciju();
         return soulp.getPrimerci();
     }

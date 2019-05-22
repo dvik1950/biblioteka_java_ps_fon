@@ -60,6 +60,7 @@ public class ObradaKlijentskihZahtevaNit extends Thread {
                 boolean uspesno;
                 HashMap<String, String> kriterijum;
                 Administrator administrator;
+                String isbn;
                 try {
                     int operacija = kz.getOperacija();
                     switch (operacija) {
@@ -91,7 +92,7 @@ public class ObradaKlijentskihZahtevaNit extends Thread {
                             so.setPodaci(Kontroler.vratiInstancu().zapamtiPrimerak(primerak));
                             break;
                         case Operacije.NADJI_PRIMERKE:
-                            String isbn = (String) kz.getParametar();
+                            isbn = (String) kz.getParametar();
                             so.setPodaci(Kontroler.vratiInstancu().nadjiPrimerke(isbn));
                             break;
                         case Operacije.IZBRISI_PRIMERAK:
@@ -127,7 +128,8 @@ public class ObradaKlijentskihZahtevaNit extends Thread {
                             so.setPodaci(listaKnjiga);
                             break;
                         case Operacije.UCITAJ_LISTU_PRIMERAKA:
-                            ArrayList<Primerak> listaPrimeraka = Kontroler.vratiInstancu().ucitajListuPrimeraka();
+                            isbn = (String) kz.getParametar();
+                            ArrayList<Primerak> listaPrimeraka = Kontroler.vratiInstancu().ucitajListuPrimeraka(isbn);
                             so.setPodaci(listaPrimeraka);
                             break;
                         case Operacije.UCITAJ_LISTU_CLANOVA:

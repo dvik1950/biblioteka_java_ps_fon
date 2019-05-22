@@ -24,7 +24,7 @@ public class SOZapamtiIznajmljivanje extends OpstaSistemskaOperacija{
         iznajmljivanje.setDatumIznajmljivanja(new Date());
         iznajmljivanje.setSifraIznajmljivanja(sifraIznajmljivanja);
         System.out.println(iznajmljivanje.getSifraIznajmljivanja() + iznajmljivanje.getPrimerak().getSifraPrimerka());
-        if(dbb.sacuvajObjekat(iznajmljivanje) != null) uspesno = true;
+        if(dbb.sacuvajIznajmljivanje(iznajmljivanje) != null) uspesno = true;
     }
 
     public Iznajmljivanje getIznajmljivanje() {

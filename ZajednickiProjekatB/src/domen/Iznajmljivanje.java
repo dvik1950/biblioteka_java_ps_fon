@@ -6,6 +6,8 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -86,7 +88,7 @@ public class Iznajmljivanje extends OpstiDomenskiObjekat{
 
     @Override
     public String vratiImeTabele() {
-        return "iznajmljivanje(SifraIznajmljivanja, SifraPrimerka, SifraClana, SifraAdmina, DatumIznajmljivanja)";
+        return "iznajmljivanje";
     }
 
     @Override
@@ -107,7 +109,40 @@ public class Iznajmljivanje extends OpstiDomenskiObjekat{
 
     @Override
     public List<OpstiDomenskiObjekat> RSuTabelu(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         List<OpstiDomenskiObjekat> iznajmljivanja = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                String sifraIznajmljivanja = rs.getString("SifraIznajmljivanja");
+                String sifraPrimerka = rs.getString("SifraPrimerka");
+                String sifraClana = rs.getString("SifraClana");
+                String sifraAdmina = rs.getString("SifraAdmina");
+                java.sql.Date datumIznajmljivanja = rs.getDate("DatumIznajmljivanja");
+                java.sql.Date datumVracanja = rs.getDate("DatumVracanja");
+                
+                Clan c = new Clan();
+                c.setSifraClana(sifraClana);
+                
+                Primerak p = new Primerak();
+                p.setSifraPrimerka(sifraPrimerka);
+                
+                Administrator a = new Administrator();
+                a.setSifraAdmina(sifraAdmina);
+                
+                Date datumIznajmljivanjaUtil = new Date(datumIznajmljivanja.getTime());
+                Date datumVracanjaUtil;
+                if(datumVracanja != null){
+                datumVracanjaUtil = new Date(datumVracanja.getTime());
+                }else{
+                datumVracanjaUtil = null;
+                }
+                Iznajmljivanje i = new Iznajmljivanje(sifraIznajmljivanja, p, c, a, datumIznajmljivanjaUtil, datumVracanjaUtil);
+                iznajmljivanja.add(i);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println("Greska kod RSuTabelu za Iznajmljivanja");
+        }
+        return iznajmljivanja;
     }
 
     @Override

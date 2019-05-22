@@ -285,7 +285,8 @@ public class OpstiKontrolerKI {
     }
 
     public void postaviPrimerke(String isbn, EkranskaFormaIznajmljivanje efi) throws Exception {
-        ArrayList<Primerak> listaPrimeraka = (ArrayList<Primerak>) posaljiZahtev(Operacije.NADJI_PRIMERKE, isbn);
+        ArrayList<Primerak> listaPrimeraka = (ArrayList<Primerak>) posaljiZahtev(Operacije.UCITAJ_LISTU_PRIMERAKA, isbn);
+        
         ModelTabelePrimerci mtp = new ModelTabelePrimerci();
         mtp.setLista(listaPrimeraka);
         efi.setModelTabelePrimerci(mtp);
