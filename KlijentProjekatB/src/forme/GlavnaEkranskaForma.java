@@ -294,8 +294,8 @@ public class GlavnaEkranskaForma extends OpstaEkranskaForma {
     void postaviToolTipove() {
         throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana.");
     }
-    
-      @Override
+
+    @Override
     HashMap<String, String> kreirajObjekat() {
         throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
     }
