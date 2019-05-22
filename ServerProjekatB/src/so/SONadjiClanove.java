@@ -30,4 +30,5 @@ public class SONadjiClanove extends OpstaSistemskaOperacija{
     public void setKriterijum(HashMap<String, String> kriterijum) {
         this.kriterijum = kriterijum;
     }
+
 }

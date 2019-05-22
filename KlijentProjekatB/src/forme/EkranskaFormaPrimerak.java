@@ -589,7 +589,7 @@ public class EkranskaFormaPrimerak extends OpstaEkranskaForma {
 
     private boolean ispravanISBN() {
         String ISBN = txtISBN.getText();
-        if (ISBN.length() == 10 || ISBN.length() == 13) {
+        if (ISBN.length() == 10 || ISBN.length() == 13 || ISBN.isEmpty()) {
             return true;
         }
         return false;

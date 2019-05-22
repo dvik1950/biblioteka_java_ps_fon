@@ -154,6 +154,7 @@ public class OpstiKontrolerKI {
         ModelTabeleClanovi mtc = new ModelTabeleClanovi();
         mtc.setLista(listaClanova);
         efc.getTabelaClanovi().setModel(mtc);
+        efc.setModelTabeleClanovi(mtc);
     }
 
     public void osveziTabeluClanova(HashMap<String, String> kriterijum, EkranskaFormaVracanje efv) throws Exception {
