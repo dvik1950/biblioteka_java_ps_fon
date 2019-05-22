@@ -64,7 +64,7 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 
         jLabel6.setText("e-mail:");
 
-        btnSacuvaj.setText("Sacuvaj");
+        btnSacuvaj.setText("Sačuvaj");
         btnSacuvaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSacuvajActionPerformed(evt);
@@ -336,7 +336,7 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     private boolean ispravnoUnetoIme() {
         String ime = txtIme.getText();
-        if (ime.matches("[a-zA-Z]+") && ime.length() > 1) {
+        if (ime.matches("[a-zA-Zšđčćž]+") && ime.length() > 1) {
             return true;
         }
         return false;
@@ -344,7 +344,7 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
 
     private boolean ispravnoUnetoPrezime() {
         String prezime = txtPrezime.getText();
-        if (prezime.matches("[a-zA-Z]+") && prezime.length() > 1) {
+        if (prezime.matches("[a-zA-Zšđčćž]+") && prezime.length() > 1) {
             return true;
         }
         return false;
