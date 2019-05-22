@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forme;
 
-import domen.Clan;
-import domen.Knjiga;
-import domen.OpstiDomenskiObjekat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -16,13 +8,9 @@ import javax.swing.JOptionPane;
 import kontroleriKI.OpstiKontrolerKI;
 import modeli.ModelTabeleClanovi;
 
-/**
- *
- * @author FON
- */
 public class EkranskaFormaClanovi extends OpstaEkranskaForma {
 
-    ModelTabeleClanovi modelTabeleClanovi = new ModelTabeleClanovi();
+    private ModelTabeleClanovi modelTabeleClanovi = new ModelTabeleClanovi();
 
     /**
      * Creates new form EkranskaFormaClan
@@ -292,10 +280,6 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
         });
     }
 
-    @Override
-    HashMap<String, String> kreirajObjekat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     void postaviImeForme() {
@@ -307,10 +291,6 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
         tabelaClanovi.setModel(modelTabeleClanovi);
     }
 
-    @Override
-    void popuniTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     void postaviToolTipove() {
@@ -351,8 +331,8 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
         if (!txtJMBG.getText().isEmpty()) {
             kriterijum.put("jmbg", txtJMBG.getText());
         }
-        ArrayList<Clan> rezultatPretrage = OpstiKontrolerKI.vratiInstancu().nadjiClanove(kriterijum);
-        modelTabeleClanovi.setLista(rezultatPretrage);
+        
+        OpstiKontrolerKI.vratiInstancu().nadjiClanove(kriterijum, this);
         JOptionPane.showMessageDialog(this, "Sistem je našao članove po zadatoj vrednosti.");
     }
 
@@ -414,5 +394,33 @@ public class EkranskaFormaClanovi extends OpstaEkranskaForma {
 
     private boolean validnaSifraClana() {
         return true;
+    }
+    
+    //neimplementirane metode
+    
+      @Override
+    HashMap<String, String> kreirajObjekat() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    void popuniTabele() {
+        throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ModelTabeleClanovi getModelTabeleClanovi() {
+        return modelTabeleClanovi;
+    }
+
+    public void setModelTabeleClanovi(ModelTabeleClanovi modelTabeleClanovi) {
+        this.modelTabeleClanovi = modelTabeleClanovi;
+    }
+
+    public javax.swing.JTable getTabelaClanovi() {
+        return tabelaClanovi;
+    }
+
+    public void setTabelaClanovi(javax.swing.JTable tabelaClanovi) {
+        this.tabelaClanovi = tabelaClanovi;
     }
 }

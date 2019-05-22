@@ -7,6 +7,7 @@ import domen.Knjiga;
 import domen.OpstiDomenskiObjekat;
 import domen.Primerak;
 import exception.ServerskiException;
+import forme.EkranskaFormaClanovi;
 import forme.EkranskaFormaIznajmljivanje;
 import forme.EkranskaFormaPrimerak;
 import forme.EkranskaFormaVracanje;
@@ -149,8 +150,11 @@ public class OpstiKontrolerKI {
         return (boolean) posaljiZahtev(Operacije.ZAPAMTI_CLANA, clan);
     }
 
-    public ArrayList<Clan> nadjiClanove(HashMap<String, String> kriterijum) throws Exception {
-        return (ArrayList<Clan>) posaljiZahtev(Operacije.NADJI_CLANOVE, kriterijum);
+    public void nadjiClanove(HashMap<String, String> kriterijum, EkranskaFormaClanovi efc) throws Exception {
+        ArrayList<Clan> listaClanova = (ArrayList<Clan>) posaljiZahtev(Operacije.NADJI_CLANOVE, kriterijum);
+        ModelTabeleClanovi mtc = new ModelTabeleClanovi();
+        mtc.setLista(listaClanova);
+        efc.getTabelaClanovi().setModel(mtc);
     }
 
     public void osveziTabeluClanova(HashMap<String, String> kriterijum, EkranskaFormaVracanje efv) throws Exception {

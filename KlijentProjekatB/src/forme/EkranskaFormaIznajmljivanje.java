@@ -1,11 +1,5 @@
 package forme;
 
-import domen.Clan;
-import domen.Iznajmljivanje;
-import domen.Knjiga;
-import domen.OpstiDomenskiObjekat;
-import domen.Primerak;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;

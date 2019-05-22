@@ -311,7 +311,7 @@ public class EkranskaFormaClan extends OpstaEkranskaForma {
         if (uspesno) {
             zatvoriFormu();
             JOptionPane.showMessageDialog(parentForma, "Sistem je zapamtio člana.");
-            parentForma.modelTabeleClanovi.setLista(new ArrayList<>());
+            parentForma.getModelTabeleClanovi().setLista(new ArrayList<>());
         } else {
             zatvoriFormu();
             JOptionPane.showMessageDialog(parentForma, "Sistem ne može zapamti člana.");
