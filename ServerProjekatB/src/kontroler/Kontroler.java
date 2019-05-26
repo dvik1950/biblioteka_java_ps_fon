@@ -26,7 +26,7 @@ import so.SOVratiPrimerak;
 import so.SOZapamtiClana;
 import so.SOZapamtiIznajmljivanje;
 import so.SOZapamtiKnjigu;
-import so.SOZapamtiNovogClana;
+//import so.SOZapamtiNovogClana;
 import so.SOZapamtiPrimerak;
 import so.pomocne.SOKreirajAdministratora;
 import so.pomocne.SOIzlogujSe;
@@ -108,12 +108,6 @@ public class Kontroler {
         return sokc.getClan();
     }
 
-    public boolean zapamtiNovogClana(Clan clan) throws ServerskiException {
-        SOZapamtiNovogClana soznc = new SOZapamtiNovogClana();
-        soznc.setClan(clan);
-        soznc.izvrsiOperaciju();
-        return soznc.isUspesno();
-    }
 
     public ArrayList<Clan> nadjiClanove(HashMap<String, String> kriterijum) throws ServerskiException {
         SONadjiClanove sonc = new SONadjiClanove();

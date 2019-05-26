@@ -304,9 +304,8 @@ public class DBBroker {
         }
         return listaPrimeraka;
     }
-    
-        public OpstiDomenskiObjekat sacuvajIznajmljivanje(Iznajmljivanje i) throws ServerskiException {
 
+    public OpstiDomenskiObjekat sacuvajIznajmljivanje(Iznajmljivanje i) throws ServerskiException {
         try {
             String upit = String.format("INSERT INTO iznajmljivanje(SifraIznajmljivanja, SifraPrimerka, SifraClana, SifraAdmina, DatumIznajmljivanja) VALUES (%s)", i.vratiParametre());
             System.out.println(upit);

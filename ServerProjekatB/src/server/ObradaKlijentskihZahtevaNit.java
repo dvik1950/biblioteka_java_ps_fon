@@ -92,11 +92,6 @@ public class ObradaKlijentskihZahtevaNit extends Thread {
                             clan = Kontroler.vratiInstancu().kreirajClana();
                             so.setPodaci(clan);
                             break;
-                        case Operacije.ZAPAMTI_NOVOG_CLANA:
-                            clan = (Clan) kz.getParametar();
-                            uspesno = Kontroler.vratiInstancu().zapamtiNovogClana(clan);
-                            so.setPodaci(uspesno);
-                            break;
                         case Operacije.NADJI_CLANOVE:
                             kriterijum = (HashMap<String, String>) kz.getParametar();
                             ArrayList<Clan> rezultatPretrage = Kontroler.vratiInstancu().nadjiClanove(kriterijum);

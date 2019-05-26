@@ -17,7 +17,7 @@ public class Operacije {
     public static final int UCITAJ_LISTU_CLANOVA = 4;
     public static final int ZAPAMTI_IZNAJMLJIVANJE = 5;
     public static final int KREIRAJ_CLANA = 6;
-    public static final int ZAPAMTI_NOVOG_CLANA = 7;
+    public static final int VRATI_PRIMERAK = 7;
     public static final int NADJI_PRIMERKE = 8;
     public static final int IZBRISI_PRIMERAK = 9;
     public static final int NADJI_KNJIGE = 10;
@@ -29,7 +29,7 @@ public class Operacije {
     public static final int NADJI_CLANA = 16;
     public static final int ZAPAMTI_CLANA = 17;
     public static final int NADJI_IZNAJMLJENE_PRIMERKE = 18;
-    public static final int VRATI_PRIMERAK = 19;
+    
     
     
     /// pomocne
