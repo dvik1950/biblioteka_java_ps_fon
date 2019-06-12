@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import komunikacija.KomunikacijaSaServerom;
 import konstante.Operacije;
 import modeli.ModelTabeleClanovi;
@@ -163,8 +164,14 @@ public class OpstiKontrolerKI {
         mtc.setLista(listaClanova);
         efv.getTabelaClanovi().setModel(mtc);
         efv.setModelTabeleClanovi(mtc);
+        if (listaClanova.isEmpty()) {
+            efv.getLabelaUspesno().setText("Sistem ne može da nađe članove po zadatoj vrednosti.");
+        } else {
+            efv.getLabelaUspesno().setText("Sistem je našao članove.");
+        }
+
     }
-    
+
     public boolean zapamtiClana(HashMap<String, String> podaci) throws Exception {
         Clan clan = new Clan();
         clan.setSifraClana(podaci.get("sifra"));
@@ -218,16 +225,18 @@ public class OpstiKontrolerKI {
         Clan clan = new Clan();
         clan.setSifraClana(sifraClana);
         ArrayList<Primerak> listaPrimeraka = (ArrayList<Primerak>) posaljiZahtev(Operacije.NADJI_IZNAJMLJENE_PRIMERKE, clan);
-        ModelTabelePrimerci mtp =  new ModelTabelePrimerci();
+        ModelTabelePrimerci mtp = new ModelTabelePrimerci();
         mtp.setLista(listaPrimeraka);
         efv.setModelTabelePrimerci(mtp);
         efv.getTabelaPrimerci().setModel(mtp);
+        JOptionPane.showMessageDialog(efv, "Sistem je našao iznajmljene primerke");
     }
 
     public boolean vratiPrimerak(String sifraPrimerka) throws Exception {
         Primerak primerak = new Primerak();
         primerak.setSifraPrimerka(sifraPrimerka);
         return (boolean) posaljiZahtev(Operacije.VRATI_PRIMERAK, primerak);
+        
     }
 
     public void zavrsiSaRadom(Administrator ulogovaniAdministrator) throws Exception {
@@ -290,21 +299,10 @@ public class OpstiKontrolerKI {
 
     public void postaviPrimerke(String isbn, EkranskaFormaIznajmljivanje efi) throws Exception {
         ArrayList<Primerak> listaPrimeraka = (ArrayList<Primerak>) posaljiZahtev(Operacije.UCITAJ_LISTU_PRIMERAKA, isbn);
-        
         ModelTabelePrimerci mtp = new ModelTabelePrimerci();
         mtp.setLista(listaPrimeraka);
         efi.setModelTabelePrimerci(mtp);
         efi.getTabelaPrimerci().setModel(mtp);
-        
-//        ArrayList<Primerak> trenutnaLista = new ArrayList<>();
-//        for (Primerak primerak : listaPrimeraka) {
-//            if (primerak.getISBN().equals(k.getISBN())) {
-//                trenutnaLista.add(primerak);
-//            }
-//        }
-//        modelTabelePrimerci.setLista(trenutnaLista);
     }
-
-    
 
 }

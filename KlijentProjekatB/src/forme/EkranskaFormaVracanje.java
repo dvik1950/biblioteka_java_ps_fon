@@ -46,6 +46,7 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaPrimerci = new javax.swing.JTable();
         btnVrati = new javax.swing.JButton();
+        labelaUspesno = new javax.swing.JLabel();
         btnNazadNaGlavnuFormu = new javax.swing.JButton();
         btnNovaPretraga = new javax.swing.JButton();
 
@@ -104,6 +105,11 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelaPrimerci.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaPrimerciMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabelaPrimerci);
 
         btnVrati.setText("Registruj vraćanje odabranog primerka");
@@ -112,6 +118,8 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
                 btnVratiActionPerformed(evt);
             }
         });
+
+        labelaUspesno.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,12 +131,12 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(65, 65, 65))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(23, 23, 23)
-                                .addComponent(txtImeClana, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(65, 65, 65)))
+                                .addComponent(txtImeClana, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -137,10 +145,13 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
                                 .addComponent(txtPrezimeClana, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(labelaNapomena, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(labelaUspesno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(141, 141, 141)
@@ -160,9 +171,11 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
                     .addComponent(jLabel2)
                     .addComponent(txtPrezimeClana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblprezime))
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
+                .addComponent(labelaUspesno)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,6 +266,9 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
         }
     }//GEN-LAST:event_btnVratiActionPerformed
 
+    private void tabelaPrimerciMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPrimerciMouseClicked
+    }//GEN-LAST:event_tabelaPrimerciMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -316,6 +332,7 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelaNapomena;
+    private javax.swing.JLabel labelaUspesno;
     private javax.swing.JLabel lblprezime;
     private javax.swing.JTable tabelaClanovi;
     private javax.swing.JTable tabelaPrimerci;
@@ -344,12 +361,16 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
         boolean uspesno;
         uspesno = OpstiKontrolerKI.vratiInstancu().vratiPrimerak(sifraPrimerka);
         if (uspesno) {
-            JOptionPane.showMessageDialog(this, "Uspešno evidentirano vraćanje primerka");
+            JOptionPane.showMessageDialog(this, "Sistem je evidentirao vraćanje primerka");
         } else {
-            JOptionPane.showMessageDialog(this, "Neuspešno evidentiranje vraćanja primerka");
+            JOptionPane.showMessageDialog(this, "Sistem ne može da evidentira vraćanje primerka");
         }
     }
 
+    //setteri i getteri
+    
+    
+    
     public ModelTabeleClanovi getModelTabeleClanovi() {
         return modelTabeleClanovi;
     }
@@ -391,5 +412,13 @@ public class EkranskaFormaVracanje extends OpstaEkranskaForma {
     @Override
     HashMap<String, String> kreirajObjekat() {
         throw new UnsupportedOperationException("Metoda koju ste pozvali nije još implementirana."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public javax.swing.JLabel getLabelaUspesno() {
+        return labelaUspesno;
+    }
+
+    public void setLabelaUspesno(javax.swing.JLabel labelaUspesno) {
+        this.labelaUspesno = labelaUspesno;
     }
 }
