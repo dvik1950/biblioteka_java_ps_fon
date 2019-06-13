@@ -229,7 +229,7 @@ public class OpstiKontrolerKI {
         mtp.setLista(listaPrimeraka);
         efv.setModelTabelePrimerci(mtp);
         efv.getTabelaPrimerci().setModel(mtp);
-        JOptionPane.showMessageDialog(efv, "Sistem je našao iznajmljene primerke");
+        JOptionPane.showMessageDialog(efv, "Sistem je našao iznajmljene primerke.");
     }
 
     public boolean vratiPrimerak(String sifraPrimerka) throws Exception {
