@@ -26,7 +26,6 @@ import so.SOVratiPrimerak;
 import so.SOZapamtiClana;
 import so.SOZapamtiIznajmljivanje;
 import so.SOZapamtiKnjigu;
-//import so.SOZapamtiNovogClana;
 import so.SOZapamtiPrimerak;
 import so.pomocne.SOKreirajAdministratora;
 import so.pomocne.SOIzlogujSe;
@@ -88,7 +87,7 @@ public class Kontroler {
         return sozp.getPrimerak();
     }
 
-    public Object nadjiPrimerke(String isbn) throws ServerskiException {
+    public ArrayList<Primerak> nadjiPrimerke(String isbn) throws ServerskiException {
         SONadjiPrimerke sonp = new SONadjiPrimerke();
         sonp.setISBN(isbn);
         sonp.izvrsiOperaciju();
@@ -156,7 +155,7 @@ public class Kontroler {
         return sozi.isUspesno();
     }
 
-    public Object nadjiIznajmljenePrimerke(Clan clan) throws ServerskiException {
+    public ArrayList<Primerak> nadjiIznajmljenePrimerke(Clan clan) throws ServerskiException {
         SONadjiIznajmljenePrimerke sonip = new SONadjiIznajmljenePrimerke();
         sonip.setClan(clan);
         sonip.izvrsiOperaciju();
