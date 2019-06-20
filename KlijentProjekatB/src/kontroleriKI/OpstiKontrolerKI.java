@@ -274,6 +274,7 @@ public class OpstiKontrolerKI {
     }
     
     // Pomoćne metode
+    
     public Administrator adminHashUadminObjekat(HashMap<String, String> adminHash) {
         Administrator administrator = new Administrator();
         administrator.setSifraAdmina(adminHash.get("SifraAdmina"));
