@@ -1,6 +1,5 @@
 package zastita;
 
-import exception.ServerskiException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

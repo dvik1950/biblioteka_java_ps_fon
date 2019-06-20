@@ -176,6 +176,7 @@ public class Kontroler {
     }
 
     // pomoćne
+    
     public List<Administrator> getListaKorisnika() throws ServerskiException {
         if (listaKorisnika == null) {
             listaKorisnika = vratiListuKorisnika();

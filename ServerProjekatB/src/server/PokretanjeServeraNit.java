@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class PokretanjeServeraNit extends Thread {
 
     private ServerSocket serverSocket;
-    public static int brojPorta = 9000; //mozda u property da stavim
+    public static int brojPorta = 9000;
     static List<ObradaKlijentskihZahtevaNit> klijenti = new ArrayList<>();
 
     public PokretanjeServeraNit() {

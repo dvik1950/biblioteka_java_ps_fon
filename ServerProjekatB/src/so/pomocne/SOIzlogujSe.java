@@ -2,7 +2,6 @@ package so.pomocne;
 
 import domen.Administrator;
 import exception.ServerskiException;
-import java.util.ArrayList;
 import java.util.List;
 import kontroler.Kontroler;
 import so.OpstaSistemskaOperacija;

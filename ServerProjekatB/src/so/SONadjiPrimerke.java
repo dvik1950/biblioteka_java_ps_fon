@@ -1,6 +1,5 @@
 package so;
 
-import domen.Knjiga;
 import domen.Primerak;
 import exception.ServerskiException;
 import java.util.ArrayList;

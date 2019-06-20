@@ -1,6 +1,5 @@
 package so.pomocne;
 
-
 import domen.Administrator;
 import domen.OpstiDomenskiObjekat;
 import exception.ServerskiException;
