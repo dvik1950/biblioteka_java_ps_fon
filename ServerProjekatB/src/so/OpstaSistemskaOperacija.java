@@ -28,7 +28,7 @@ public abstract class OpstaSistemskaOperacija {
         dbb.potvrdiTransakciju();
     }
 
-    private void ponistiTransakciju() {
+    private void ponistiTransakciju() throws ServerskiException {
         dbb.ponistiTransakciju();
     }
 

@@ -65,11 +65,11 @@ public class DBBroker {
         }
     }
 
-    public void ponistiTransakciju() {
+    public void ponistiTransakciju() throws ServerskiException {
         try {
             konekcija.rollback();
         } catch (SQLException ex) {
-            System.out.println("Nije uspelo ponistavanje transakcije");
+            throw new ServerskiException("Transakcija nije uspesno ponistena");
         }
     }
 
@@ -101,7 +101,7 @@ public class DBBroker {
             s.close();
             return listaObjekata;
         } catch (SQLException ex) {
-            throw new ServerskiException("Server ne moze da prikaze podatke o " + o.getClass().getName() + ".");
+            throw new ServerskiException("Server ne moze da prikaže podatke o " + o.getClass().getName() + ".");
         }
     }
 
@@ -121,7 +121,6 @@ public class DBBroker {
 
     public OpstiDomenskiObjekat izmeniObjekat(OpstiDomenskiObjekat o) {
         String upit = String.format("UPDATE %s SET %s WHERE %s = '%s'", o.vratiImeTabele(), o.vratiUpdate(), o.vratiPK(), o.vratiVrednostPK());
-        System.out.println(upit);
         try {
             Statement s = konekcija.createStatement();
             s.executeUpdate(upit);
@@ -137,7 +136,6 @@ public class DBBroker {
         try {
             String upit = String.format("DELETE FROM %s WHERE %s = %s", o.vratiImeTabele(), o.vratiPK(), o.vratiVrednostPK());
             Statement s = konekcija.createStatement();
-            System.out.println(upit);
             s.executeUpdate(upit);
             s.close();
         } catch (SQLException ex) {
@@ -168,7 +166,6 @@ public class DBBroker {
     public OpstiDomenskiObjekat sacuvajObjekat(OpstiDomenskiObjekat o) throws ServerskiException {
         try {
             String upit = String.format("INSERT INTO %s VALUES (%s)", o.vratiImeTabele(), o.vratiParametre());
-            System.out.println(upit);
             Statement s = konekcija.createStatement();
             s.executeUpdate(upit);
             s.close();
@@ -235,7 +232,6 @@ public class DBBroker {
         if (upit.substring(upit.length() - 4, upit.length()).equals("AND ")) {
             upit = upit.substring(0, upit.length() - 4);
         }
-        System.out.println(upit);
         try {
             Statement s = konekcija.createStatement();
             ResultSet rs = s.executeQuery(upit);
@@ -308,7 +304,6 @@ public class DBBroker {
     public OpstiDomenskiObjekat sacuvajIznajmljivanje(Iznajmljivanje i) throws ServerskiException {
         try {
             String upit = String.format("INSERT INTO iznajmljivanje(SifraIznajmljivanja, SifraPrimerka, SifraClana, SifraAdmina, DatumIznajmljivanja) VALUES (%s)", i.vratiParametre());
-            System.out.println(upit);
             Statement s = konekcija.createStatement();
             s.executeUpdate(upit);
             s.close();
