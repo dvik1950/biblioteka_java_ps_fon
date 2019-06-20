@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package konstante;
 
-/**
- *
- * @author FON
- */
+
 public class Operacije {
 
     public static final int PRIJAVI_ADMINISTRATORA = 1;
@@ -29,7 +21,6 @@ public class Operacije {
     public static final int NADJI_CLANA = 16;
     public static final int ZAPAMTI_CLANA = 17;
     public static final int NADJI_IZNAJMLJENE_PRIMERKE = 18;
-    
     
     
     /// pomocne

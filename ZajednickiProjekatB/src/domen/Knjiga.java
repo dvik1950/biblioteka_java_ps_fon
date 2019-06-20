@@ -96,12 +96,12 @@ public class Knjiga extends OpstiDomenskiObjekat{
 
     @Override
     public String vratiUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Pozvana je metoda koja nije implementirana još");
     }
 
     @Override
     public void postaviVrednostPK(String pk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     

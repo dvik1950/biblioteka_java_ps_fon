@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domen;
 
 import java.sql.ResultSet;
@@ -11,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author FON
- */
 public class Administrator extends OpstiDomenskiObjekat {
 
     private String sifraAdmina;
@@ -112,19 +103,19 @@ public class Administrator extends OpstiDomenskiObjekat {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Greska kod RSuTabelu za Menadzer");
+            System.out.println("Greska kod RSuTabelu za Administratora");
         }
         return administratori;
     }
 
     @Override
     public String vratiUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Pozvana je metoda koja nije implementirana još"); 
     }
 
     @Override
     public void postaviVrednostPK(String pk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Pozvana je metoda koja nije implementirana još"); 
     }
 
     @Override
@@ -146,8 +137,6 @@ public class Administrator extends OpstiDomenskiObjekat {
         }
         final Administrator other = (Administrator) obj;
         if (!Objects.equals(this.korisnickaLozinka, other.korisnickaLozinka)) {
-            System.out.println("this " + this.korisnickaLozinka);
-            System.out.println("other" + other.korisnickaLozinka);
             return false;
         }
         if (!Objects.equals(this.korisnickoIme, other.korisnickoIme)) {

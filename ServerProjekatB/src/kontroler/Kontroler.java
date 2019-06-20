@@ -195,7 +195,5 @@ public class Kontroler {
         ka.izvrsiOperaciju();
         System.out.println("Kreiran je novi administrator");
     }
-
-    
     
 }

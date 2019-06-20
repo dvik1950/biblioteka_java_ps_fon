@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package domen;
 
 import java.sql.ResultSet;
@@ -11,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- *
- * @author FON
- */
 public class Primerak extends OpstiDomenskiObjekat{
     private String sifraPrimerka;
     private String ISBN;
@@ -94,12 +85,12 @@ public class Primerak extends OpstiDomenskiObjekat{
 
     @Override
     public String vratiUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Pozvana je metoda koja nije implementirana još");
     }
 
     @Override
     public void postaviVrednostPK(String pk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Pozvana je metoda koja nije implementirana još"); 
     }
     
     
