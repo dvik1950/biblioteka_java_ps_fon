@@ -74,14 +74,14 @@ public class Kontroler {
         return sonk.getKnjige();
     }
 
-    public Object nadjiKnjigu(Knjiga knjiga) throws ServerskiException {
+    public Knjiga nadjiKnjigu(Knjiga knjiga) throws ServerskiException {
         SONadjiKnjigu sonk = new SONadjiKnjigu();
         sonk.setParametar(knjiga);
         sonk.izvrsiOperaciju();
         return sonk.getKnjiga();
     }
 
-    public Object zapamtiPrimerak(Primerak primerak) throws ServerskiException {
+    public Primerak zapamtiPrimerak(Primerak primerak) throws ServerskiException {
         SOZapamtiPrimerak sozp = new SOZapamtiPrimerak();
         sozp.setPrimerak(primerak);
         sozp.izvrsiOperaciju();
@@ -163,7 +163,7 @@ public class Kontroler {
         return sonip.getListaPrimeraka();
     }
 
-    public Object vratiPrimerak(Primerak primerak) throws ServerskiException {
+    public boolean vratiPrimerak(Primerak primerak) throws ServerskiException {
         SOVratiPrimerak sovp = new SOVratiPrimerak();
         sovp.setPrimerak(primerak);
         sovp.izvrsiOperaciju();
