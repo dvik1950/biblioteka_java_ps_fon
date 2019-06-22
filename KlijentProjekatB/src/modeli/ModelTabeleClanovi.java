@@ -47,6 +47,4 @@ public class ModelTabeleClanovi extends AbstractTableModel{
         this.fireTableDataChanged();
     }
     
-    
-    
 }
